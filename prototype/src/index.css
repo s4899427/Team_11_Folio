@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 20 10% 5%;
+    --foreground: 40 30% 92%;
+    --card: 20 8% 8%;
+    --card-foreground: 40 30% 92%;
+    --popover: 20 8% 8%;
+    --popover-foreground: 40 30% 92%;
+    --primary: 40 30% 92%;
+    --primary-foreground: 20 10% 5%;
+    --secondary: 20 6% 14%;
+    --secondary-foreground: 40 30% 92%;
+    --muted: 20 6% 12%;
+    --muted-foreground: 40 12% 62%;
+    --accent: 38 58% 57%;
+    --accent-foreground: 20 10% 5%;
+    --destructive: 344 55% 42%;
+    --destructive-foreground: 40 30% 92%;
+    --border: 25 8% 16%;
+    --input: 25 8% 16%;
+    --ring: 38 58% 57%;
+    --radius: 0.25rem;
+    --font-heading: "Fraunces", ui-serif, Georgia, serif;
+    --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-display: "Fraunces", ui-serif, Georgia, serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    --folio-ink: #0C0A09;
+    --folio-ink-soft: #15110E;
+    --folio-ink-card: #1A1612;
+    --folio-cream: #F4EDE0;
+    --folio-cream-dim: #A89E8A;
+    --folio-burgundy: #7C1F3A;
+    --folio-terracotta: #C25B3F;
+    --folio-saffron: #D4A24E;
+    --folio-green: #2F5447;
+    --folio-clay: #8B5A3C;
+    --folio-sage: #6B7F6E;
+    --folio-mauve: #9B7B8E;
+    --folio-rose: #A04555;
+  }
+}
+
+@layer base {
+  html.light {
+    --background: 40 33% 97%;
+    --foreground: 20 12% 10%;
+    --card: 40 28% 93%;
+    --card-foreground: 20 12% 10%;
+    --popover: 40 28% 93%;
+    --popover-foreground: 20 12% 10%;
+    --primary: 20 12% 10%;
+    --primary-foreground: 40 33% 97%;
+    --secondary: 38 22% 89%;
+    --secondary-foreground: 20 12% 10%;
+    --muted: 38 18% 88%;
+    --muted-foreground: 20 8% 38%;
+    --accent: 38 58% 45%;
+    --accent-foreground: 40 33% 97%;
+    --destructive: 344 55% 40%;
+    --destructive-foreground: 40 33% 97%;
+    --border: 35 16% 82%;
+    --input: 35 16% 82%;
+    --ring: 38 58% 45%;
+  }
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body { @apply bg-background text-foreground font-body antialiased; overscroll-behavior-y: none; }
+  ::selection { background: var(--folio-saffron); color: var(--folio-ink); }
+}
+
+@layer components {
+  .folio-wordmark { font-family: var(--font-display); font-weight: 300; letter-spacing: 0.42em; text-transform: uppercase; }
+  .folio-eyebrow { font-family: var(--font-body); font-size: 0.625rem; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; }
+  .folio-serif { font-family: var(--font-display); }
+  .folio-textile { background-image: radial-gradient(circle at 50% 50%, hsl(var(--foreground) / 0.025) 1px, transparent 1px); background-size: 14px 14px; }
+  .folio-grain { position: relative; }
+  .folio-grain::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.04; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+}
+
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+  .animate-fade-in { animation: folio-fade-in 0.5s ease-out both; }
+  .animate-fade-up { animation: folio-fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .animate-scale-in { animation: folio-scale-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .animate-slide-up { animation: folio-slide-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .animate-pulse-soft { animation: folio-pulse-soft 2.5s ease-in-out infinite; }
+  @keyframes folio-fade-in { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes folio-fade-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes folio-scale-in { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+  @keyframes folio-slide-up { from { opacity: 0; transform: translateY(100%); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes folio-pulse-soft { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
