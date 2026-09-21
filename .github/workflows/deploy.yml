@@ -32,6 +32,8 @@ jobs:
           cache-dependency-path: prototype/package-lock.json
       - run: npm ci
       - name: Build (base path = repo name, so assets resolve under github.io/<repo>/)
+        env:
+          VITE_FEEDBACK_SHEET_URL: ${{ secrets.VITE_FEEDBACK_SHEET_URL }}
         run: npx vite build --base=/${{ github.event.repository.name }}/
       - uses: actions/upload-pages-artifact@v3
         with:
