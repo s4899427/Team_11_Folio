@@ -46,3 +46,11 @@ AI tools helped build the prototype, draft documents and prepare interview mater
 
 ## 10. What is still open
 Curator rotation and fairness · moderation beyond report-by-hand · whether one daily Edition is enough variety · whether newcomers use the app after the first week · long-term effect of removing likes.
+
+## 11. What we cannot guarantee
+Said plainly, so a reader can judge the work:
+- **AI-made music.** Folio cannot detect AI-generated music. The safeguard is human: a named curator signs "human-made, local and new" for every new-artist pick and cites two independent sources. A curator can still sign falsely. What limits the harm is visibility (every reader sees the sources), the team's power to remove a curator, and the Discovery check. We have not tested this against deliberate abuse.
+- **Local and new are claims, not measurements.** "Local" rests on a profile location, a gig or a venue the curator names. We use no stream counts and no streaming-service integration, because we have not verified API access or terms.
+- **Facts.** Eleven seed picks and two city facts rest on Wikipedia alone and are being cross-checked (`05_Research_Evaluation/DATA_VERIFICATION_REGISTER.md`). We claim no Brisbane-specific fact about Aboriginal music because we could not verify one; the national fact on screen is labelled as national. The Acknowledgement of Country wording is a draft that has not yet been reviewed by an appropriate person, and the app uses no Aboriginal artwork.
+- **Evaluation.** When this page was first drafted (15 Oct 2026) no evaluation session had been run. Findings come from small, convenience-based, short sessions in one city, and are formative, not proof. **[AFTER EVALUATION: dates, number of sessions and participants.]**
+- **Prototype, not product.** No email recovery, moderation tooling, content licensing or scale testing. Nearby events are curator-entered tips. A gig verification queue and a source-link check were planned and are not built.

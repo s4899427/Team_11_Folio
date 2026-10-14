@@ -3,9 +3,7 @@
 For the Week 12 studio (A2 portrait poster plus a 2 to 3 minute pitch; every member must be ready to pitch). Rehearse aloud with a timer. All three team members should be able to give all of it.
 
 ## A. The 2.5 minute pitch (about 330 words, read at a steady pace)
-**Hook (15 s).** "How do you find new music from your own city without an algorithm deciding for you?"
-
-**Problem (25 s).** "Streaming apps give endless choice, ranked by popularity. Local emerging artists get buried, and nobody is accountable for what you see. In our interviews, one participant told us: “I don't want it to be like another Instagram or TikTok, very algorithmic focused. I just want it to be more human focused.” (participant R1-P6)."
+**Hook and problem (35 s).** Ask first, then pause and let them answer: "Quick question. What's the last song you loved because a *person* told you about it, not because an app suggested it?" Then: "One of our interviewees told us: 'I just want it to be more human focused.' Music Australia's 2025 research says it's national: streaming is now the main way people discover music, and personalised algorithms may be making emerging Australian artists harder to find." Then: "So we built something closer to what radio used to do for a city. Once a day, one named person picks 8 to 12 songs and tells you why each one is there. No likes. No ranking. That's Folio." Hold up the phone: "Here's today's curator." *Before you say the research lines, open the* Listening In *report and confirm both sentences and the page number; if you cannot, cut that sentence. Make sure an Edition is published that morning.*
 
 **Idea (30 s).** "Folio gives each city one music Edition a day. A named local curator picks eight to twelve tracks, says why each is there, and links a source. It locks at the city's midnight. No likes, no ranking. At least two of the picks are new local artists, so discovery is built in, not left to chance."
 
@@ -65,3 +63,6 @@ Use `10_Team/WHO_DID_WHAT.md`. Each member must be able to explain their part an
 - Can each of us say the insight in one sentence?
 - Can each of us name the trade-off we accepted for each concept?
 - Is there one thing the evaluation changed that we can point at on screen?
+
+**12. What are the limits of the work?** (say this unprompted if time allows)
+"Folio cannot detect AI-made music. A named curator signs that each new-artist pick is human-made, local and new and gives two independent sources, but a curator could still sign falsely; we haven't tested deliberate abuse. 'Local' and 'new' are claims a person makes, not measurements: we use no stream counts and no streaming integration. Some seed facts are Wikipedia-only and are being cross-checked, and we claim no Brisbane-specific fact about Aboriginal music because we couldn't verify one. Our evaluation is small, short and formative, in one city. It is a proof of concept: no email recovery, moderation tooling, licensing or scale testing."

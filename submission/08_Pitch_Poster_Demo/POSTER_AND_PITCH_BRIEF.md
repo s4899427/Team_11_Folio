@@ -1,6 +1,6 @@
-# Poster and pitch: brief for Pranav (poster) and Shaz (pitch)
+# Poster and pitch brief (Shaz: poster, design, pitch; Pranav: kit and QR; all pitch)
 
-Start when: the build is frozen, the evaluation round is done, and the ethics notes exist. Assignment of poster to Pranav and pitch to Shaz is a first guess; swap if it suits the team better.
+Start when: the build is frozen, the evaluation round is done, and the ethics notes exist. Current split (from 9 Oct): Shaz owns the poster, design, pitch and demo script; Pranav owns the tradeshow kit and QR code; every member pitches.
 Deadline: Week 12 studio (about Tue 20 or Thu 22 Oct, confirm the day). Artefacts are due 3:00 pm Mon 26 Oct 2026.
 
 ## What the brief requires (Design Project brief, v1)
