@@ -2,7 +2,7 @@
 
 *DECO3500, Team 11. Wiki page. Replaces the earlier draft written for the multi-domain concept, which no longer matches the product.*
 
-**Frameworks.** We used Loke & Matthews (2020) to analyse harms to stakeholders and the Ethical Disclaimer canvas (ethicsfordesigners.com) to surface assumptions. **[Add the full Loke & Matthews reference from the course reading list; we have not copied one from memory.]** We also use two readings from the unit: Winner (1980), "Do artifacts have politics?", and Akrich (1992), "The de-scription of technical objects", because Folio's central design choices are political choices built into software.
+**Frameworks.** We used the Ethical Disclaimer canvas (Ethics for Designers Toolkit, everydayethics.uxp2.com/methods/ethical-disclaimer/) to list stakeholders, imagine unethical situations and decide who takes responsibility, in a team workshop **[AFTER WORKSHOP: date and who attended]**. We did not use Loke & Matthews (2020) because we could not verify its content. We also use two readings from the unit: Winner (1980), "Do artifacts have politics?", and Akrich (1992), "The de-scription of technical objects", because Folio's central design choices are political choices built into software.
 
 ## 1. Who is affected
 | Stakeholder | How |

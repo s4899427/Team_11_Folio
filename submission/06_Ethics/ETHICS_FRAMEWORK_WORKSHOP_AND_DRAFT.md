@@ -16,7 +16,7 @@ Materials: the Ethical Disclaimer worksheet (download from the toolkit), sticky 
 
 **Evidence to keep (this is what a marker sees):** a photo of the filled worksheet, the date, who attended, what changed after the discussion, and one change made to the app or the evaluation protocol because of the exercise. Put the photo and a short written account on the wiki Ethical Considerations page.
 
-## Part B. Pre-filled draft (REVIEW: drafted by Claude from what we know; the team must challenge and own it)
+## Part B. Pre-filled draft (drafted by Claude from what we know; the team challenges and owns it in the workshop)
 
 **1. Context.** Folio is a mobile-first web app giving each city one human-picked music Edition per day. Live in Brisbane. Used asynchronously on phones, sometimes at venues. Roles: guest, member, artist, curator, Folio team. Prototype for a university course, built by three students, hosted on free tiers (GitHub Pages, Supabase).
 
@@ -35,16 +35,16 @@ Materials: the Ethical Disclaimer worksheet (download from the toolkit), sticky 
 | 3 | Listeners | Location tracked | Yes | Opt-in, in the browser only, never stored |
 | 4 | Listeners | Under-18 users (age not collected) | Partly | We do not collect age; no direct messages; state this limit; recommend an age gate before any real release |
 | 5 | Listeners | Feeling watched or pressured by social signals | Yes | No likes, counts or rankings; comments never reorder anything |
-| 6 | Artists | Curators favour friends; pay-to-play perception | Yes | Pitches go to a named curator; no payment features; curators declare a conflict when picking their own or friends' music **[add this rule]** |
+| 6 | Artists | Curators favour friends; pay-to-play perception | Yes | Pitches go to a named curator; no payment features; a proposed rule, not built: curators declare a conflict when picking their own or friends' music |
 | 7 | Artists | Unfair exclusion because of the new-artist quota | Partly | Quota is 2 to 4 of 8 to 12, a judgement we will test; no artist is guaranteed a slot |
 | 8 | Artists | Harassment through fan questions | Yes | One question a day, private reply, fan must connect first and is named to the artist |
 | 9 | Artists | Their music linked without consent | Partly | We link to public sources only and do not host audio; an artist can ask us to remove a pick |
-| 10 | Curators | Burnout from a daily obligation; legal exposure if a Liner Note fact is wrong | Yes | One day each, not every day; sources required; the Folio Desk covers gaps; corrections process **[add]** |
+| 10 | Curators | Burnout from a daily obligation; legal exposure if a Liner Note fact is wrong | Yes | One day each, not every day; sources required; the Folio Desk covers gaps; a corrections process is proposed, not built |
 | 11 | Folio team | Misuse of admin power (approving friends, reading applications) | Yes | Team cannot decide their own application; decisions are recorded with who and when; flag set only in the database |
 | 12 | First Nations people and communities | Acknowledgement of Country as tokenism; using Indigenous art or language without permission; mislabelling First Nations artists as "emerging" | Yes | Acknowledgement text reviewed with an appropriate person before the tradeshow; no Indigenous-style art without permission and credit; see the art note in the decision log |
 | 13 | People in other cities (Seoul, Mumbai) | Greetings and facts in languages the team cannot check | Yes | Marked draft; unreviewed text hidden for non-live cities until native speakers review |
 | 14 | Venues and organisers | Wrong gig information; unfair promotion | Yes | Gig tips come from curators; the planned verification step is not built, so Nearby is labelled as curator tips |
-| 15 | Research participants | Being identified; unclear consent; recordings kept | Yes | Codes only; consent first; no names in the repo; names remain in old git history (the team chose not to rewrite it) **[confirm with tutor]** |
+| 15 | Research participants | Being identified; unclear consent; recordings kept | Yes | Codes only; consent first; no names in the repo; names remain in old git history (the team chose not to rewrite it); to be confirmed with the tutor |
 | 16 | Hosts and future maintainers | Data on third-party servers whose region we have not confirmed; no incident process | Partly | State it; use only what is needed; no sensitive data collected |
 | 17 | Everyone | AI-written code or documents containing errors or invented facts | Yes | Every AI use disclosed (`AI_USE.md`); every cited source checked by a human |
 | 18 | Teaching staff | Project presented as validated when it is not | Yes | We label findings as formative and list limits |

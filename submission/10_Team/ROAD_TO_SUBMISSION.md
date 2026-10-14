@@ -10,8 +10,8 @@ Written 15 Oct 2026. **Submission is due 3:00 pm Mon 26 Oct (target 12:00; late 
 | Sun 18 Oct | **Evidence in** | Run S2; fill results template with me | Read and sign off architecture and test docs | Fill poster findings box; send to print |
 | Mon 19 Oct | **Last evidence** | Pitch script final | Run S3 (someone outside the course) | (away) |
 | Tue 20 or Thu 22 Oct | **Tradeshow** | Pitch (everyone pitches) | Run the demo and the two-phone moment | Poster on the stand |
-| Wed 21 to Fri 23 Oct | **Documentation** | Wiki: design process (~1,000 words + images, who did what), ethics page (canvas photos) | `README`, architecture, setup, `[REVIEW]` tags cleared for engineering docs | Poster and pitch notes into the repo |
-| Sat 24 Oct | **Freeze** | Re-run all tests; check every `[REVIEW]` tag; final zip | Final deploy; confirm live link and sandbox link | Print and pitch rehearsal (if not done) |
+| Wed 21 to Fri 23 Oct | **Documentation** | Wiki: design process (~1,000 words + images, who did what), ethics page (canvas photos) | `README`, architecture, setup, `[DYLAN TO WRITE]` and `[AFTER EVALUATION]` markers cleared for engineering docs | Poster and pitch notes into the repo |
+| Sat 24 Oct | **Freeze** | Re-run all tests; search the repo for `[DYLAN TO WRITE]`, `[AFTER EVALUATION]` and `[AFTER WORKSHOP]` and clear each one; final zip | Final deploy; confirm live link and sandbox link | Print and pitch rehearsal (if not done) |
 | Sun 25 Oct | **Check** | Marker's-eye walk through `submission/00_START_HERE` | Open the live link on a clean phone | Proofread poster text and pitch |
 | Mon 26 Oct | **Submit by 12:00** | Upload artefacts (PDF `Team11_3DesignPrototype.pdf`, wiki links, poster, pitch) | Be reachable | Be reachable |
 

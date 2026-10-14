@@ -9,7 +9,7 @@ Folio gives each city one human-picked music Edition per day: 8 to 12 picks, eve
 **Domain.** Discovering local music, especially emerging artists, on a phone.
 **Problem (working statement, to be confirmed by evaluation).** Streaming feeds optimise for engagement and popularity. Listeners get endless choice with no accountable person behind it, and emerging local artists are buried.
 **Opportunity.** A small, bounded, asynchronous social experience: one named person, one city, one day, with just enough awareness of other people (who curated, who found something new) and none of the pressure (no counts, no ranking).
-**Evidence base.** Interviews (de-identified, `05_Research_Evaluation/all-interviews-deidentified.md`). *The insight sentence below must be rewritten from the interview and evaluation findings before submission:* "[One sentence insight, in participants' words]". *Draft to test, from round 1 interviews:* six independent interviewees complained, unprompted, that algorithmic discovery has narrowed their taste and said they would value a human who stands behind what they hear **[REVIEW: confirm wording against the transcripts]**.
+**Evidence base.** Interviews (de-identified, `05_Research_Evaluation/all-interviews-deidentified.md`). **Insight (from the interviews):** six independent round-1 interviewees complained, unprompted, that algorithmic discovery had narrowed their taste, and one asked for it to be “more human focused” (R1-P6). *Draft to test in evaluation:* people would trust and open a daily list if a named person stands behind each pick. **[AFTER EVALUATION: add one line from the sessions that supports or contradicts this.]**
 
 ## 3. Users and roles
 | Role | How obtained | Main goal | Lands on after login |

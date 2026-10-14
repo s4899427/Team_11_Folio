@@ -1,16 +1,16 @@
 # AI use appendix
 
-The course requires every use of AI to be referenced, a list of AI-supported sections, diagrams and systems, and a copy of prompts. Substantially AI-produced work can be judged without academic merit, so this is exact. **Cells in [brackets] must be completed by the named person; they are not filled in by the tool.**
+The course requires every use of AI to be referenced, a list of AI-supported sections, diagrams and systems, and a copy of prompts. Substantially AI-produced work can be judged without academic merit, so this is exact. **Cells marked [DYLAN TO WRITE] must be completed by the named person; they are not filled in by the tool.**
 
 | Area | Tool | Extent | What the team did itself | Prompts |
 |---|---|---|---|---|
-| Prototype code (React/Vite, data layer, database rules, tests, smoke test) | Claude (claude.ai and Claude Code) | Most of the code was generated and iterated under the team's direction | Product decisions, rules (one Edition a day, sourced Liner Notes, new-artist mix, curator "applied for"), review and live testing. Reviewed by: **[name]** | **[paste or link: `docs/ai-prompts/`]** |
-| Base44 side prototype | Base44 built-in AI | The app was generated from prompts; security scan run by the platform | Prompt writing, review, decision not to use with real participants | **[paste prompts]** |
-| Documentation drafts (MVP brief, roles and flows, ethics, process overview, evaluation kit, task sheets) | Claude | Drafted from the team's research and decisions; edited by the team | Facts, decisions and evidence come from the team's research. Edited and checked by: **[name]** | **[paste or link]** |
-| City facts and local touches | Claude with web search | Drafted; every fact has a source link in `cities.js` | Verification by: **[name]**; Wikipedia-only items cross-checked against primary sources | **[paste]** |
-| Evaluation design | Claude | Draft protocol and questions | Sessions, notes, coding and analysis done by the team | **[paste]** |
-| Interviews and synthesis | **[none / name the tool]** | **[extent]** | Interviews, transcripts and judgement by team members | **[paste]** |
-| Poster, pitch, design files | **[none / name the tool]** | **[extent]** | **[what the team did]** | **[paste]** |
+| Prototype code (React/Vite, data layer, database rules, tests, smoke test) | Claude (claude.ai and Claude Code) | Most of the code was generated and iterated under the team's direction | Product decisions, rules (one Edition a day, sourced Liner Notes, new-artist mix, curator "applied for"), review and live testing. Reviewed by: **[DYLAN TO WRITE: name]** | **[DYLAN TO WRITE: link or paste from `docs/ai-prompts/`]** |
+| Base44 side prototype | Base44 built-in AI | The app was generated from prompts; security scan run by the platform | Prompt writing, review, decision not to use with real participants | **[DYLAN TO WRITE: paste Base44 prompts]** |
+| Documentation drafts (MVP brief, roles and flows, ethics, process overview, evaluation kit, task sheets) | Claude | Drafted from the team's research and decisions; edited by the team | Facts, decisions and evidence come from the team's research. Edited and checked by: **[DYLAN TO WRITE: name]** | **[DYLAN TO WRITE: link or paste]** |
+| City facts and local touches | Claude with web search | Drafted; every fact has a source link in `cities.js` | Verification by: **[DYLAN TO WRITE: name]**; Wikipedia-only items cross-checked against primary sources | **[DYLAN TO WRITE: paste]** |
+| Evaluation design | Claude | Draft protocol and questions | Sessions, notes, coding and analysis done by the team | **[DYLAN TO WRITE: paste]** |
+| Interviews and synthesis | **[DYLAN TO WRITE: none or name the tool]** | **[DYLAN TO WRITE: extent]** | Interviews, transcripts and judgement by team members | **[DYLAN TO WRITE: paste]** |
+| Poster, pitch, design files | **[DYLAN TO WRITE: none or name the tool]** | **[DYLAN TO WRITE: extent]** | **[DYLAN TO WRITE: what the team did]** | **[DYLAN TO WRITE: paste]** |
 
 ## How we kept AI use honest
 - AI never picked Editions or ranked anything shown to readers.

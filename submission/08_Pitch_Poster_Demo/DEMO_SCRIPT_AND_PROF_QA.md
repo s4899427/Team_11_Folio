@@ -5,7 +5,7 @@ For the Week 12 studio (A2 portrait poster plus a 2 to 3 minute pitch; every mem
 ## A. The 2.5 minute pitch (about 330 words, read at a steady pace)
 **Hook (15 s).** "How do you find new music from your own city without an algorithm deciding for you?"
 
-**Problem (25 s).** "Streaming apps give endless choice, ranked by popularity. Local emerging artists get buried, and nobody is accountable for what you see. In our interviews, [insert the single strongest finding in participants' words]."
+**Problem (25 s).** "Streaming apps give endless choice, ranked by popularity. Local emerging artists get buried, and nobody is accountable for what you see. In our interviews, one participant told us: “I don't want it to be like another Instagram or TikTok, very algorithmic focused. I just want it to be more human focused.” (participant R1-P6)."
 
 **Idea (30 s).** "Folio gives each city one music Edition a day. A named local curator picks eight to twelve tracks, says why each is there, and links a source. It locks at the city's midnight. No likes, no ranking. At least two of the picks are new local artists, so discovery is built in, not left to chance."
 
@@ -13,7 +13,7 @@ For the Week 12 studio (A2 portrait poster plus a 2 to 3 minute pitch; every mem
 
 **Why it is social and mobile (25 s).** "It's asynchronous but shares a place: a city. Awareness is limited on purpose: you can see who curated and whether others found something new, but there are no counts and no ranking, because visibility has a privacy cost. That's the trade-off we designed around."
 
-**What we learned (20 s).** "[One finding from evaluation and one thing we changed because of it.]"
+**What we learned (20 s).** "**[AFTER EVALUATION: one finding and one thing we changed because of it.]**"
 
 **Close (10 s).** "Folio: one Edition, one city, one day. Try it. The QR code is on the poster."
 
@@ -35,7 +35,7 @@ For the Week 12 studio (A2 portrait poster plus a 2 to 3 minute pitch; every mem
 "Real: accounts, roles, curator approval, publishing with rule checks, comments, Discovery check, Backs, pitches, connections, questions, and the midnight lock, on a shared database. Simulated or seeded: the founding Brisbane Editions, other cities (Coming soon), and Nearby events, which are curator-entered tips."
 
 **4. What did users tell you, and what did you change?**
-"[Specific finding, who said it (code), what changed in the app.]" If evaluation has not run when asked: "We have interview findings from round one and round two [cite]. We are running evaluation sessions this week; here is the plan." Do not invent results.
+"**[AFTER EVALUATION: specific finding, who said it (code), what changed in the app.]**" If evaluation has not run when asked: "We have interview findings from round one and round two [cite]. We are running evaluation sessions this week; here is the plan." Do not invent results.
 
 **5. Which social and mobile concepts did you use?**
 "The 3C model and awareness, the time-space matrix, social presence and its tensions (visibility versus privacy, context versus distraction), the location design framework for structuring the experience, and the Locales-based heuristics for evaluation. The map is in the repo." Name one trade-off: "We gave up social proof, like counts and trending, to protect privacy and keep it calm."
@@ -50,10 +50,10 @@ For the Week 12 studio (A2 portrait poster plus a 2 to 3 minute pitch; every mem
 "The size is our judgement, not a tested result. The mix rule keeps local artists present without making the Edition all unknown names. Our evaluation question Q8 tests whether it felt right."
 
 **9. How did you handle ethics?**
-"Location is optional and never stored. Fan names are visible only to the artist they chose to connect with. Discovery totals never show who answered. Participants are coded, with consent. Our register lists every piece of data. We applied [framework] to the ethics page." Name the framework only once it is filled.
+"Location is optional and never stored. Fan names are visible only to the artist they chose to connect with. Discovery totals never show who answered. Participants are coded, with consent. Our register lists every piece of data. We ran the Ethical Disclaimer canvas from the Ethics for Designers Toolkit as a team workshop **[AFTER WORKSHOP: date]** and used Winner and Akrich for the politics of our rules." Name the framework only once it is filled.
 
 **10. Where did you use AI?**
-"Claude was used for [list from AI_USE.md: coding assistance, drafting documents, test scripts]; every use is referenced and the prompts are in the appendix. All design decisions, interviews and evaluation were done by the team."
+"Claude was used for coding assistance, drafting documents, evaluation design, test scripts and city-fact research; every use is referenced and the prompts are in the appendix. All design decisions, interviews and evaluation were done by the team."
 
 **11. Who did what?**
 Use `10_Team/WHO_DID_WHAT.md`. Each member must be able to explain their part and the whole.
