@@ -8,8 +8,8 @@ statement. No answer to who curates or what stops it becoming another
 algorithmic feed.
 
 ## The evidence that forced the decision
-- Six independent interviews (Marushka, Pritesh, Minahil, Rayyan, Sully,
-  Aloysious) converged unprompted on the same complaint: algorithmic
+- Six independent interviews (R1-A, R1-B, R1-C, R1-D, R1-E,
+  R1-F) converged unprompted on the same complaint: algorithmic
   discovery has "ruined the taste," and people want something more
   human-curated.
 - Peer feedback (Team 8) asked the question we didn't yet have an answer

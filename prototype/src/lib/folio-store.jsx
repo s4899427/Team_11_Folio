@@ -1,28 +1,20 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
+import { CITIES } from "./cities.js";
+import { isLocalApproved } from "./api.js";
 
-const KEY = "folio_state_v1";
+// Per-device UI state: who is signed in, theme, private saves.
+// Shared content (Editions, comments, pitches, gig tips) lives in api.js.
+const KEY = "folio_state_v2";
 
 const DEFAULT_STATE = {
-  onboarded: false,
   theme: "dark",
-  communities: [],
-  profile: {
-    name: "You",
-    username: "",
-    bio: "",
-    avatar: "https://i.pravatar.cc/300?img=68",
-    verification: "not_verified",
-  },
-  // Merged: your own unfinished work AND bookmarks of others' posts live
-  // in one bucket now — no separate Draft/Saved distinction.
-  saved: [],
-  posts: [],
+  seenIntro: false,
+  cityId: "brisbane",     // chosen in the welcome flow; every screen follows it
+  session: null,        // { id, email, name, suburb, role, token, local }
+  saved: [],            // private bookmarks: { id, title, artist, editionDate }
   feedbackGiven: false,
-  // Likes & comments — one shared engine, keyed by any target id
-  // (a post id or a Thread id), used identically in both places.
-  interactions: {},
-  // The curator's staged, editable-until-11:30pm Thread
-  pendingThread: null,
+  demoCurator: false,   // local-mode only: lets the team try the Studio without a database
+  demoAdmin: false,     // local-mode only: lets the team try the Admin screen without a database
 };
 
 function load() {
@@ -42,95 +34,38 @@ export function FolioProvider({ children }) {
     try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
   }, [state]);
 
-  const setCommunities = useCallback((ids) => {
-    setState((s) => ({ ...s, communities: ids.slice(0, 3), onboarded: true }));
-  }, []);
+  const setSession = useCallback((session) => setState((s) => ({ ...s, session })), []);
+  const signOut = useCallback(() => setState((s) => ({ ...s, session: null, demoCurator: false, demoAdmin: false })), []);
+  const setTheme = useCallback((theme) => setState((s) => ({ ...s, theme })), []);
+  const setCityId = useCallback((cityId) => setState((s) => ({ ...s, cityId: CITIES[cityId] ? cityId : "brisbane" })), []);
+  const setSeenIntro = useCallback(() => setState((s) => ({ ...s, seenIntro: true })), []);
+  const setFeedbackGiven = useCallback(() => setState((s) => ({ ...s, feedbackGiven: true })), []);
+  const setDemoCurator = useCallback((v) => setState((s) => ({ ...s, demoCurator: v })), []);
+  const setDemoAdmin = useCallback((v) => setState((s) => ({ ...s, demoAdmin: v })), []);
 
-  const updateProfile = useCallback((patch) => {
-    setState((s) => ({ ...s, profile: { ...s.profile, ...patch } }));
-  }, []);
-
-  // Unified save — used both for "save this unfinished post" from the
-  // composer, and "bookmark someone else's post" from a PostCard.
-  const saveItem = useCallback((item) => {
+  const toggleSaved = useCallback((item) => {
     setState((s) => {
-      const exists = s.saved.find((x) => x.id === item.id);
-      if (exists) return s; // already saved, no duplicate
+      const exists = s.saved.some((x) => x.id === item.id);
       return {
         ...s,
-        saved: [{ ...item, id: item.id || "s" + Date.now(), savedAt: Date.now() }, ...s.saved],
+        saved: exists ? s.saved.filter((x) => x.id !== item.id) : [{ ...item, savedAt: Date.now() }, ...s.saved],
       };
     });
   }, []);
-
-  const removeSaved = useCallback((id) => {
-    setState((s) => ({ ...s, saved: s.saved.filter((x) => x.id !== id) }));
-  }, []);
-
   const isSaved = useCallback((id) => state.saved.some((x) => x.id === id), [state.saved]);
 
-  const publishPost = useCallback((post) => {
-    setState((s) => ({
-      ...s,
-      posts: [{ ...post, type: "Post", id: "p" + Date.now(), date: new Date().toISOString().slice(5, 10).replace("-", "/").toUpperCase(), likes: 0 }, ...s.posts],
-    }));
-  }, []);
+  // Curator = approved in the database (remote) or the explicit demo switch (local).
+  const isCurator = state.session
+    ? state.session.role === "curator" || (state.session.local && (state.demoCurator || isLocalApproved(state.session.id)))
+    : false;
+  // Folio team = flag in the database (remote) or the explicit demo switch (local).
+  const isAdmin = state.session ? Boolean(state.session.isAdmin) || (state.session.local && state.demoAdmin) : false;
 
-  const setFeedbackGiven = useCallback(() => {
-    setState((s) => ({ ...s, feedbackGiven: true }));
-  }, []);
-
-  const setTheme = useCallback((t) => {
-    setState((s) => ({ ...s, theme: t }));
-  }, []);
-
-  // ── Likes & comments — single implementation, works for a post id
-  // or a Thread id identically ──
-  const toggleLike = useCallback((id, baseLikes = 0) => {
-    setState((s) => {
-      const current = s.interactions[id] || { likes: baseLikes, likedByMe: false, comments: [] };
-      const likedByMe = !current.likedByMe;
-      return {
-        ...s,
-        interactions: {
-          ...s.interactions,
-          [id]: { ...current, likedByMe, likes: current.likes + (likedByMe ? 1 : -1) },
-        },
-      };
-    });
-  }, []);
-
-  const addComment = useCallback((id, text) => {
-    setState((s) => {
-      const current = s.interactions[id] || { likes: 0, likedByMe: false, comments: [] };
-      const comment = { id: "c" + Date.now(), author: "You", text, date: new Date().toISOString().slice(5, 10) };
-      return {
-        ...s,
-        interactions: {
-          ...s.interactions,
-          [id]: { ...current, comments: [...current.comments, comment] },
-        },
-      };
-    });
-  }, []);
-
-  const getInteractions = useCallback((id, baseLikes = 0) => {
-    return state.interactions[id] || { likes: baseLikes, likedByMe: false, comments: [] };
-  }, [state.interactions]);
-
-  // ── Curator staging ──
-  const setPendingThread = useCallback((thread) => {
-    setState((s) => ({ ...s, pendingThread: thread }));
-  }, []);
-  const clearPendingThread = useCallback(() => {
-    setState((s) => ({ ...s, pendingThread: null }));
-  }, []);
-
+  const city = CITIES[state.cityId] || CITIES.brisbane;
   const value = {
-    ...state, setCommunities, updateProfile, saveItem, removeSaved, isSaved,
-    publishPost, setFeedbackGiven, setTheme,
-    toggleLike, addComment, getInteractions,
-    setPendingThread, clearPendingThread,
+    ...state, isCurator, isAdmin, city,
+    setSession, signOut, setTheme, setCityId, setSeenIntro, setFeedbackGiven, setDemoCurator, setDemoAdmin,
+    toggleSaved, isSaved,
   };
   return <FolioContext.Provider value={value}>{children}</FolioContext.Provider>;
 }

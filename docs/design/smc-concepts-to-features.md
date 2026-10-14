@@ -1,3 +1,5 @@
+> **Status: superseded.** Written for the earlier multi-domain MOTIF/Folio concept (Drop and Remix, Today's Thread, AR dress-up). The current product is the music-first Folio; see `docs/final/MVP_BRIEF.md` and `docs/MVP_ROLES_AND_FLOWS.md`. Kept as process evidence.
+
 # Social/Mobile Computing Concepts → App Features
 
 | Concept | What It Means | Where It Shows Up In Our App |

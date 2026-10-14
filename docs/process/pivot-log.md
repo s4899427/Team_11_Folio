@@ -40,7 +40,7 @@ Thread model generalised to hold any number of elements from any cultural
 domain (added a "Place" element as proof).
 
 ## Pivot 7 — No coordination feature → "Tonight's Theme"
-**Why**: Several interviews (Marushka, Sully, Rayyan) independently
+**Why**: Several interviews (R1-A, R1-E, R1-D) independently
 described checking friends' style/music before an occasion. Built a
 lightweight, non-social-graph feature demonstrating this directly, rather
 than a full follow/messaging system.

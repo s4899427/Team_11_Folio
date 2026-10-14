@@ -1,3 +1,5 @@
+> **Status: superseded.** Written for the earlier multi-domain MOTIF/Folio concept (Drop and Remix, Today's Thread, AR dress-up). The current product is the music-first Folio; see `docs/final/MVP_BRIEF.md` and `docs/MVP_ROLES_AND_FLOWS.md`. Kept as process evidence.
+
 # Folio — Requirements Document (Final)
 Domain, concept, and requirements as they actually stand — supersedes the earlier draft skeleton, which was left with placeholder text and described a concept the team has since moved past.
 
@@ -14,11 +16,11 @@ Folio opens to **Today** — a single daily "Thread": one curated cultural exper
 
 ## 2. Core User Needs (from research)
 - **Need**: Discovery without algorithmic narrowing
-  - Evidence: Aloysious, Minahil, Sully — all independently described algorithm fatigue and a preference for human curation
+  - Evidence: R1-F, R1-C, R1-E — all independently described algorithm fatigue and a preference for human curation
 - **Need**: Trust in curated/verified sources
   - Evidence: Round 2 interviews (verified-artist trust questions)
 - **Need**: Coordinating identity/style with friends before an occasion
-  - Evidence: Marushka (Y2K playlist/outfit pairing for occasions), Sully and Rayyan (checking friends' style/music before deciding their own) — directly informed the "Tonight's Theme" feature
+  - Evidence: R1-A (Y2K playlist/outfit pairing for occasions), R1-E and R1-D (checking friends' style/music before deciding their own) — directly informed the "Tonight's Theme" feature
 - **Need**: A reason to share culture that isn't social validation alone
   - Evidence: Team 4 peer feedback ("why would someone share with strangers?") — addressed via lineage/attribution on Remixes and the dated-record framing of each Thread
 
@@ -57,10 +59,10 @@ Still fully in force. No infinite auto-loading, no autoplay, no short-form video
 ## 8. Requirements Traceability
 | Requirement | Supporting evidence | Source |
 |---|---|---|
-| No algorithm | "Algorithm has ruined the taste..." | Aloysious |
-| No algorithm | "Everything feels very algorithm-driven..." | Minahil |
+| No algorithm | "Algorithm has ruined the taste..." | R1-F |
+| No algorithm | "Everything feels very algorithm-driven..." | R1-C |
 | Bounded, not infinite | Explicit design principle, tested against interview sentiment | Team synthesis |
-| Coordination without a follow graph | Friends' style-checking before going out | Marushka, Sully, Rayyan |
+| Coordination without a follow graph | Friends' style-checking before going out | R1-A, R1-E, R1-D |
 | Plurality over single "accuracy" | Response to Team 8 peer feedback | Team 8, Round 1 feedback |
 | Sample diversity in curation | Response to Team 8 peer feedback on UQ-only sample | Team 8, Round 1 feedback |
 

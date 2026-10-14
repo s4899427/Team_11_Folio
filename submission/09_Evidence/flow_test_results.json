@@ -1,0 +1,170 @@
+[
+ {
+  "flow": "F1 New listener",
+  "step": "First open sends a new visitor to the welcome story",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "flow": "F1 New listener",
+  "step": "Welcome says what Folio is and why open it today",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "flow": "F1 New listener",
+  "step": "City step shows Brisbane live",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "flow": "F1 New listener",
+  "step": "Lands on Today with the Edition",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "flow": "F1 New listener",
+  "step": "First-visit intro card explains Folio",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "flow": "F1 New listener",
+  "step": "Curator is named",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "flow": "F1 New listener",
+  "step": "Liner Note opens with a source",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "flow": "F1 New listener",
+  "step": "Each pick shows a reason and no like button",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "flow": "F2 Returning listener",
+  "step": "Sign up lands on Today (not a settings page)",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "flow": "F2 Returning listener",
+  "step": "Comment posts",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "flow": "F2 Returning listener",
+  "step": "Discovery check answered once",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "flow": "F2 Returning listener",
+  "step": "Saved pick appears privately in Me",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "flow": "F2 Returning listener",
+  "step": "Browse shows Nearby events",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "flow": "F2 Returning listener",
+  "step": "Profile picture can be set in Settings",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "flow": "F3 Artist",
+  "step": "Artist signs up and lands in their space",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "flow": "F3 Artist",
+  "step": "Pitch sent to a curator",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "flow": "F4 Curator",
+  "step": "Application sent",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "flow": "F4 Curator",
+  "step": "Team screen lists the pending application",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "flow": "F4 Curator",
+  "step": "Approve moves it to decided",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "flow": "F4 Curator",
+  "step": "Approved curator lands in the Studio on login",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "flow": "F4 Curator",
+  "step": "Studio blocks an incomplete Edition",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "flow": "F4 Curator",
+  "step": "Valid 8-pick Edition with 3 new artists publishes",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "flow": "F5 Listener and artist",
+  "step": "Artist appears in Browse",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "flow": "F5 Listener and artist",
+  "step": "Fan connects and sees the artist's update",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "flow": "F5 Listener and artist",
+  "step": "Fan asks one question",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "flow": "F5 Listener and artist",
+  "step": "Artist sees the fan by name and the question",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "flow": "F5 Listener and artist",
+  "step": "Fan sees the artist's reply",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "flow": "All flows",
+  "step": "No page errors",
+  "pass": true,
+  "detail": ""
+ }
+]

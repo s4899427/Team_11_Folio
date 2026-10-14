@@ -1,0 +1,437 @@
+<title>Folio User Flows</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: one calm reading column, flows in scrollable figures. Teal ink on cool grey, amber only for warnings. */
+:root{
+  --bg:#f3f5f6; --panel:#ffffff; --fg:#14202a; --muted:#52636f; --line:#d3dbe0;
+  --accent:#0d6b73; --accent-soft:#dcefef; --warn:#8a5200; --warn-soft:#fbeed8;
+  --ok:#1b6b3a; --ok-soft:#dff1e5; --no:#9b2c2c; --no-soft:#f8e1e1;
+  --display:"Fraunces","Georgia",serif; --body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e1519; --panel:#162027; --fg:#e6edf1; --muted:#9fb0ba; --line:#2a3943;
+  --accent:#58c2c9; --accent-soft:#12383c; --warn:#f0bd6e; --warn-soft:#3a2c12;
+  --ok:#74d39a; --ok-soft:#14301f; --no:#f19a9a; --no-soft:#3a1717; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1519; --panel:#162027; --fg:#e6edf1; --muted:#9fb0ba; --line:#2a3943;
+  --accent:#58c2c9; --accent-soft:#12383c; --warn:#f0bd6e; --warn-soft:#3a2c12;
+  --ok:#74d39a; --ok-soft:#14301f; --no:#f19a9a; --no-soft:#3a1717; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--body);padding-inline:16px;padding-block:24px 64px}
+main{max-width:920px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.2;text-wrap:balance;margin:0}
+h1{font-size:clamp(28px,5vw,40px)}
+h2{font-size:26px}
+h3{font-size:19px}
+p{margin:0}
+.lede{color:var(--muted);max-width:65ch;margin-top:10px}
+.tag{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+nav{display:flex;flex-wrap:wrap;gap:8px}
+nav a{padding:8px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--fg);text-decoration:none;font-size:14px}
+nav a:hover,nav a:focus-visible{border-color:var(--accent);outline:2px solid var(--accent);outline-offset:1px}
+section{display:flex;flex-direction:column;gap:16px;scroll-margin-top:16px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font:500 12px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.pill{display:inline-block;padding:2px 8px;border-radius:99px;font-size:12px;font-weight:600;white-space:nowrap}
+.ok{background:var(--ok-soft);color:var(--ok)} .warn{background:var(--warn-soft);color:var(--warn)} .no{background:var(--no-soft);color:var(--no)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.step{border:1px solid var(--line);border-radius:8px;padding:14px;background:var(--panel);display:flex;flex-direction:column;gap:6px}
+.step b{font-size:15px}
+.step span{color:var(--muted);font-size:14px}
+figure{margin:0;display:flex;flex-direction:column;gap:10px}
+figcaption{color:var(--muted);font-size:14px;max-width:70ch}
+
+.mermaid{min-width:520px}
+.textver{margin-top:12px}
+.textver summary{cursor:pointer;font-weight:600;color:var(--accent);padding:6px 0}
+.textver .flow{margin-top:10px}
+.flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+.node{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:8px;padding:12px;background:var(--bg);min-width:0}
+.node.decision{border-color:var(--warn);background:var(--warn-soft)}
+.node .n{flex:none;width:26px;height:26px;border-radius:50%;background:var(--accent);color:var(--bg);font:600 13px/26px var(--mono);text-align:center}
+.node .t{font-weight:500;overflow-wrap:anywhere}
+.next{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:3px;font-size:13px;color:var(--muted)}
+.next b{color:var(--fg)} .next span{overflow-wrap:anywhere} .next em{font-style:normal;font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+
+.note{border-left:3px solid var(--warn);background:var(--warn-soft);padding:12px 14px;border-radius:0 8px 8px 0;font-size:14px}
+ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+code{font-family:var(--mono);font-size:13px}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+
+<main>
+  <header>
+    <div class="tag">Team 11 · DECO3500 · working draft</div>
+    <h1>Folio user flows</h1>
+    <p class="lede">Who does what in the app, how a curator's picks get checked before they go live, and which data sources we can actually use. The flows follow the rules already built (one Edition per city per day, 80/20 Australian mix, no likes or feed). Share with Shaz for the design review and the poster.</p>
+  </header>
+
+  <nav aria-label="Sections">
+    <a href="#verify">Checks before publishing</a>
+    <a href="#apis">Data sources</a>
+    <a href="#f1">1 New user</a>
+    <a href="#f2">2 Existing user</a>
+    <a href="#f3">3 Artist</a>
+    <a href="#f4">4 Curator</a>
+    <a href="#f5">5 Artist and fan</a>
+    <a href="#f6">6 Curator, artist, fan</a>
+    <a href="#gigs">7 Gigs</a>
+    <a href="#open">Decisions</a>
+  </nav>
+
+  <section id="verify">
+    <div class="tag">Curation</div>
+    <h2>Checks before an Edition goes live</h2>
+    <p>Yes, verify before publishing, in four layers. Only the first two can block a publish. The lookups and the agent give the curator a flag, never a verdict, and the curator stays accountable for every pick. Nothing is published or rejected on an agent's say-so.</p>
+    <div class="panel scroll">
+      <figure>
+        <pre class="mermaid">
+flowchart TD
+  N1["Curator adds a pick"]
+  N2["1 Rules in code: 80/20 mix, Australian origin, city, date, liner note present"]
+  N3["2 Source link opens, and its site is on our list"]
+  N4["3 Lookup: artist origin in MusicBrainz, gig in Ticketmaster"]
+  N5["4 Agent: is the source real, does the page mention the artist or fact?"]
+  N6["Curator sees: Checked, Not found, or Unclear"]
+  N7{"Curator decides"}
+  N8["Edition live, locks at city midnight"]
+  N1 --&gt; N2
+  N2 --&gt; N3
+  N3 --&gt; N4
+  N4 --&gt; N5
+  N5 --&gt; N6
+  N6 --&gt; N7
+  N7 -- "Fix a pick" --&gt; N1
+  N7 -- "Publish" --&gt; N8
+</pre>
+<details class="textver"><summary>Text version of this flow</summary><ol class="flow"><li class="node"><span class="n">1</span><div><div class="t">Curator adds a pick</div><ul class="next"><li><b></b>→ 2 <span>1 Rules in code: 80/20…</span></li></ul></div></li><li class="node"><span class="n">2</span><div><div class="t">1 Rules in code: 80/20 mix, Australian origin, city, date, liner note present</div><ul class="next"><li><b></b>→ 3 <span>2 Source link opens, and…</span></li></ul></div></li><li class="node"><span class="n">3</span><div><div class="t">2 Source link opens, and its site is on our list</div><ul class="next"><li><b></b>→ 4 <span>3 Lookup: artist origin in…</span></li></ul></div></li><li class="node"><span class="n">4</span><div><div class="t">3 Lookup: artist origin in MusicBrainz, gig in Ticketmaster</div><ul class="next"><li><b></b>→ 5 <span>4 Agent: is the source…</span></li></ul></div></li><li class="node"><span class="n">5</span><div><div class="t">4 Agent: is the source real, does the page mention the artist or fact?</div><ul class="next"><li><b></b>→ 6 <span>Curator sees: Checked, Not found,…</span></li></ul></div></li><li class="node"><span class="n">6</span><div><div class="t">Curator sees: Checked, Not found, or Unclear</div><ul class="next"><li><b></b>→ 7 <span>Curator decides</span></li></ul></div></li><li class="node decision"><span class="n">7</span><div><div class="t">Curator decides</div><ul class="next"><li><b>Fix a pick </b>→ 1 <span>Curator adds a pick</span></li><li><b>Publish </b>→ 8 <span>Edition live, locks at city…</span></li></ul></div></li><li class="node"><span class="n">8</span><div><div class="t">Edition live, locks at city midnight</div></div></li></ol></details>
+        <figcaption>Layers 1 and 2 block publishing. Layers 3 and 4 only flag. Readers see the source link on each liner note, not the agent's opinion.</figcaption>
+      </figure>
+    </div>
+    <div class="grid">
+      <div class="step"><b>1 Rules in code</b><span>Hard rules, no AI. Exact 80/20 counts, outside-Australia music rejected, Edition date and city, liner note and source link present.</span></div>
+      <div class="step"><b>2 Link check</b><span>The URL loads. Domains we trust (official sites, news, Wikipedia, MusicBrainz) pass; unknown domains are flagged for the curator to confirm.</span></div>
+      <div class="step"><b>3 Lookups</b><span>Artist found in MusicBrainz with an Australian area. Gig found in Ticketmaster for that city and date. Not found does not mean fake, because small gigs are often missing.</span></div>
+      <div class="step"><b>4 Agent read (narrow job)</b><span>Runs on every pick, but only answers one question: is the source real, and does the page mention the artist, venue or fact? Choosing and curating stays fully human. Advisory only. Log it in <code>docs/AI_USE.md</code> with the prompt, since the course requires it.</span></div>
+    </div>
+    <div class="note">The API keys must live on the server (a Supabase Edge Function), never in the browser, and results should be cached so we stay inside the rate limits below.</div>
+  </section>
+
+  <section id="apis">
+    <div class="tag">Data sources</div>
+    <h2>Events and artist info for any region</h2>
+    <p>Checked against each provider's own pages on 9 Oct 2026. No single service covers small local gigs worldwide, so the realistic plan is: curators and artists enter gigs with a source link, and the APIs below cross-check them.</p>
+    <div class="panel scroll">
+      <table>
+        <thead><tr><th>Source</th><th>Good for</th><th>Access and limits</th><th>Verdict</th></tr></thead>
+        <tbody>
+          <tr><td><b>Ticketmaster Discovery API</b></td><td>Events and venues by city and date</td><td>Free API key. 5 requests a second, 5,000 a day. Ticketmaster describes coverage as global.</td><td><span class="pill ok">Use</span></td></tr>
+          <tr><td><b>MusicBrainz</b></td><td>Does this artist exist, and where are they from</td><td>No key. 1 request a second, meaningful User-Agent required. Free for non-commercial use. Artists link to areas; the exact response field still needs a test.</td><td><span class="pill ok">Use</span></td></tr>
+          <tr><td><b>Bandsintown</b></td><td>Artist tour dates</td><td>Not accepting API requests for student or educational projects.</td><td><span class="pill no">Can't use</span></td></tr>
+          <tr><td><b>Spotify Web API</b></td><td>Artist and track metadata</td><td>Since Feb 2026 development apps need a Premium owner, allow 5 users, and no longer return artist popularity or followers.</td><td><span class="pill no">Not for data</span><br>Keep Listen search links only</td></tr>
+          <tr><td><b>Songkick, Last.fm</b></td><td>Events, listener counts</td><td>Could not confirm current official terms this session.</td><td><span class="pill warn">Unconfirmed</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul>
+      <li><b>Test first:</b> run a Brisbane Ticketmaster search for next week and count how many real small-venue gigs it returns. If it misses most, curators' own gig entries become the main source for Brisbane.</li>
+      <li><b>City list:</b> for now a fixed table (name, time zone, coordinates) is enough, with Brisbane live and others marked Coming soon. A geocoding service is only needed once cities are added freely.</li>
+      <li><b>Established or New and upcoming:</b> no API tells us this after Spotify removed popularity. It stays the curator's call, and a checker could flag disagreement. That is a hypothesis to test.</li>
+    </ul>
+  </section>
+
+  <section id="f1">
+    <div class="tag">Flow 1</div>
+    <h2>New user</h2>
+    <div class="panel scroll">
+      <figure>
+        <pre class="mermaid">
+flowchart TD
+  N1["Opens Folio"]
+  N2["Welcome: what Folio is"]
+  N3["City: Use my location, or pick from a dropdown"]
+  N4{"Location refused or unavailable?"}
+  N5["Dropdown. Brisbane live, other cities Coming soon"]
+  N6["City set from location"]
+  N7["Three story cards: reader, path to curating, curator's journey"]
+  N8{"How do you want in?"}
+  N9["Guest: name only"]
+  N10["Listener account"]
+  N11["Artist account"]
+  N12["Curator: greyed out. Hover says Curator is applied for, not chosen"]
+  N13["Today"]
+  N14["Today, plus Your artist space"]
+  N15["Apply to curate later from Me"]
+  N1 --&gt; N2
+  N2 --&gt; N3
+  N3 --&gt; N4
+  N4 -- "Yes" --&gt; N5
+  N4 -- "No" --&gt; N6
+  N5 --&gt; N6
+  N6 --&gt; N7
+  N7 --&gt; N8
+  N8 --&gt; N9
+  N8 --&gt; N10
+  N8 --&gt; N11
+  N8 --&gt; N12
+  N9 --&gt; N13
+  N10 --&gt; N13
+  N11 --&gt; N14
+  N12 -.-&gt; N15
+</pre>
+<details class="textver"><summary>Text version of this flow</summary><ol class="flow"><li class="node"><span class="n">1</span><div><div class="t">Opens Folio</div><ul class="next"><li><b></b>→ 2 <span>Welcome: what Folio is</span></li></ul></div></li><li class="node"><span class="n">2</span><div><div class="t">Welcome: what Folio is</div><ul class="next"><li><b></b>→ 3 <span>City: Use my location, or…</span></li></ul></div></li><li class="node"><span class="n">3</span><div><div class="t">City: Use my location, or pick from a dropdown</div><ul class="next"><li><b></b>→ 4 <span>Location refused or unavailable?</span></li></ul></div></li><li class="node decision"><span class="n">4</span><div><div class="t">Location refused or unavailable?</div><ul class="next"><li><b>Yes </b>→ 5 <span>Dropdown. Brisbane live, other cities…</span></li><li><b>No </b>→ 6 <span>City set from location</span></li></ul></div></li><li class="node"><span class="n">5</span><div><div class="t">Dropdown. Brisbane live, other cities Coming soon</div><ul class="next"><li><b></b>→ 6 <span>City set from location</span></li></ul></div></li><li class="node"><span class="n">6</span><div><div class="t">City set from location</div><ul class="next"><li><b></b>→ 7 <span>Three story cards: reader, path…</span></li></ul></div></li><li class="node"><span class="n">7</span><div><div class="t">Three story cards: reader, path to curating, curator&#x27;s journey</div><ul class="next"><li><b></b>→ 8 <span>How do you want in?</span></li></ul></div></li><li class="node decision"><span class="n">8</span><div><div class="t">How do you want in?</div><ul class="next"><li><b></b>→ 9 <span>Guest: name only</span></li><li><b></b>→ 10 <span>Listener account</span></li><li><b></b>→ 11 <span>Artist account</span></li><li><b></b>→ 12 <span>Curator: greyed out. Hover says…</span></li></ul></div></li><li class="node"><span class="n">9</span><div><div class="t">Guest: name only</div><ul class="next"><li><b></b>→ 13 <span>Today</span></li></ul></div></li><li class="node"><span class="n">10</span><div><div class="t">Listener account</div><ul class="next"><li><b></b>→ 13 <span>Today</span></li></ul></div></li><li class="node"><span class="n">11</span><div><div class="t">Artist account</div><ul class="next"><li><b></b>→ 14 <span>Today, plus Your artist space</span></li></ul></div></li><li class="node"><span class="n">12</span><div><div class="t">Curator: greyed out. Hover says Curator is applied for, not chosen</div><ul class="next"><li><em>later</em> <b></b>→ 15 <span>Apply to curate later from…</span></li></ul></div></li><li class="node"><span class="n">13</span><div><div class="t">Today</div></div></li><li class="node"><span class="n">14</span><div><div class="t">Today, plus Your artist space</div></div></li><li class="node"><span class="n">15</span><div><div class="t">Apply to curate later from Me</div></div></li></ol></details>
+        <figcaption>Location is only requested when the user taps the button, so refusing it never blocks sign-up.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="f2">
+    <div class="tag">Flow 2</div>
+    <h2>Existing user</h2>
+    <div class="panel scroll">
+      <figure>
+        <pre class="mermaid">
+flowchart TD
+  N1["Opens Folio"]
+  N2{"Signed in?"}
+  N3["Login"]
+  N4["Today for the saved city"]
+  N5["Greeting follows the city clock"]
+  N6["Browse"]
+  N7["Me: saved picks, edit profile, apply to curate"]
+  N8["Today's Edition with countdown to city midnight"]
+  N9["Artists in the area"]
+  N10["Curator profiles"]
+  N11["Nearby events"]
+  N12["Archive by month"]
+  N13["Listen links, save a pick, comment"]
+  N14["Discovery check: did this show you something new?"]
+  N15{"Midnight in the city"}
+  N16["Edition locks into the Archive, never edited"]
+  N1 --&gt; N2
+  N2 -- "No" --&gt; N3
+  N2 -- "Yes" --&gt; N4
+  N3 --&gt; N4
+  N4 --&gt; N5
+  N4 --&gt; N6
+  N4 --&gt; N7
+  N5 --&gt; N8
+  N6 --&gt; N9
+  N6 --&gt; N10
+  N6 --&gt; N11
+  N6 --&gt; N12
+  N8 --&gt; N13
+  N8 --&gt; N14
+  N8 --&gt; N15
+  N15 --&gt; N16
+</pre>
+<details class="textver"><summary>Text version of this flow</summary><ol class="flow"><li class="node"><span class="n">1</span><div><div class="t">Opens Folio</div><ul class="next"><li><b></b>→ 2 <span>Signed in?</span></li></ul></div></li><li class="node decision"><span class="n">2</span><div><div class="t">Signed in?</div><ul class="next"><li><b>No </b>→ 3 <span>Login</span></li><li><b>Yes </b>→ 4 <span>Today for the saved city</span></li></ul></div></li><li class="node"><span class="n">3</span><div><div class="t">Login</div><ul class="next"><li><b></b>→ 4 <span>Today for the saved city</span></li></ul></div></li><li class="node"><span class="n">4</span><div><div class="t">Today for the saved city</div><ul class="next"><li><b></b>→ 5 <span>Greeting follows the city clock</span></li><li><b></b>→ 6 <span>Browse</span></li><li><b></b>→ 7 <span>Me: saved picks, edit profile,…</span></li></ul></div></li><li class="node"><span class="n">5</span><div><div class="t">Greeting follows the city clock</div><ul class="next"><li><b></b>→ 8 <span>Today&#x27;s Edition with countdown to…</span></li></ul></div></li><li class="node"><span class="n">6</span><div><div class="t">Browse</div><ul class="next"><li><b></b>→ 9 <span>Artists in the area</span></li><li><b></b>→ 10 <span>Curator profiles</span></li><li><b></b>→ 11 <span>Nearby events</span></li><li><b></b>→ 12 <span>Archive by month</span></li></ul></div></li><li class="node"><span class="n">7</span><div><div class="t">Me: saved picks, edit profile, apply to curate</div></div></li><li class="node"><span class="n">8</span><div><div class="t">Today&#x27;s Edition with countdown to city midnight</div><ul class="next"><li><b></b>→ 13 <span>Listen links, save a pick,…</span></li><li><b></b>→ 14 <span>Discovery check: did this show…</span></li><li><b></b>→ 15 <span>Midnight in the city</span></li></ul></div></li><li class="node"><span class="n">9</span><div><div class="t">Artists in the area</div></div></li><li class="node"><span class="n">10</span><div><div class="t">Curator profiles</div></div></li><li class="node"><span class="n">11</span><div><div class="t">Nearby events</div></div></li><li class="node"><span class="n">12</span><div><div class="t">Archive by month</div></div></li><li class="node"><span class="n">13</span><div><div class="t">Listen links, save a pick, comment</div></div></li><li class="node"><span class="n">14</span><div><div class="t">Discovery check: did this show you something new?</div></div></li><li class="node decision"><span class="n">15</span><div><div class="t">Midnight in the city</div><ul class="next"><li><b></b>→ 16 <span>Edition locks into the Archive,…</span></li></ul></div></li><li class="node"><span class="n">16</span><div><div class="t">Edition locks into the Archive, never edited</div></div></li></ol></details>
+        <figcaption>Nearby moves from Today into Browse. Everything shown is limited to the selected city.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="f3">
+    <div class="tag">Flow 3</div>
+    <h2>Artist</h2>
+    <div class="panel scroll">
+      <figure>
+        <pre class="mermaid">
+flowchart TD
+  N1["Signs up as Artist"]
+  N2["Edit profile: picture and bio"]
+  N3["Your artist space"]
+  N4["Post an update, max 280 characters"]
+  N5["See fans who connected, with names"]
+  N6["Questions waiting"]
+  N7["Pitch a track to a curator"]
+  N8["Reply: only the asker sees it"]
+  N9["Curator reviews it in their Studio"]
+  N10{"Chosen?"}
+  N11["Appears as New and upcoming in an Edition"]
+  N12["Nothing public. The pitch stays private"]
+  N1 --&gt; N2
+  N2 --&gt; N3
+  N3 --&gt; N4
+  N3 --&gt; N5
+  N3 --&gt; N6
+  N3 --&gt; N7
+  N6 --&gt; N8
+  N7 --&gt; N9
+  N9 --&gt; N10
+  N10 -- "Yes" --&gt; N11
+  N10 -- "No" --&gt; N12
+</pre>
+<details class="textver"><summary>Text version of this flow</summary><ol class="flow"><li class="node"><span class="n">1</span><div><div class="t">Signs up as Artist</div><ul class="next"><li><b></b>→ 2 <span>Edit profile: picture and bio</span></li></ul></div></li><li class="node"><span class="n">2</span><div><div class="t">Edit profile: picture and bio</div><ul class="next"><li><b></b>→ 3 <span>Your artist space</span></li></ul></div></li><li class="node"><span class="n">3</span><div><div class="t">Your artist space</div><ul class="next"><li><b></b>→ 4 <span>Post an update, max 280…</span></li><li><b></b>→ 5 <span>See fans who connected, with…</span></li><li><b></b>→ 6 <span>Questions waiting</span></li><li><b></b>→ 7 <span>Pitch a track to a…</span></li></ul></div></li><li class="node"><span class="n">4</span><div><div class="t">Post an update, max 280 characters</div></div></li><li class="node"><span class="n">5</span><div><div class="t">See fans who connected, with names</div></div></li><li class="node"><span class="n">6</span><div><div class="t">Questions waiting</div><ul class="next"><li><b></b>→ 8 <span>Reply: only the asker sees…</span></li></ul></div></li><li class="node"><span class="n">7</span><div><div class="t">Pitch a track to a curator</div><ul class="next"><li><b></b>→ 9 <span>Curator reviews it in their…</span></li></ul></div></li><li class="node"><span class="n">8</span><div><div class="t">Reply: only the asker sees it</div></div></li><li class="node"><span class="n">9</span><div><div class="t">Curator reviews it in their Studio</div><ul class="next"><li><b></b>→ 10 <span>Chosen?</span></li></ul></div></li><li class="node decision"><span class="n">10</span><div><div class="t">Chosen?</div><ul class="next"><li><b>Yes </b>→ 11 <span>Appears as New and upcoming…</span></li><li><b>No </b>→ 12 <span>Nothing public. The pitch stays…</span></li></ul></div></li><li class="node"><span class="n">11</span><div><div class="t">Appears as New and upcoming in an Edition</div></div></li><li class="node"><span class="n">12</span><div><div class="t">Nothing public. The pitch stays private</div></div></li></ol></details>
+        <figcaption>Artists get no follower count and no likes. They see who chose to connect, and by name.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="f4">
+    <div class="tag">Flow 4</div>
+    <h2>Curator</h2>
+    <div class="panel scroll">
+      <figure>
+        <pre class="mermaid">
+flowchart TD
+  N1["Apply to curate from Me"]
+  N2["Form: why, and links to past work"]
+  N3{"Admin decision"}
+  N4["Stays a listener"]
+  N5["Curator Studio"]
+  N6["Pick a day: today to 14 days ahead"]
+  N7["Add 5 to 7 picks"]
+  N8["Each pick: tags, why it is here, liner note with source link"]
+  N9["Checks run: rules, link, lookups, agent read"]
+  N10{"Required checks pass?"}
+  N11["Message says exactly what to fix"]
+  N12["Submit up to 3 gigs for team verification"]
+  N13["Publish"]
+  N14["Live until city midnight, then locked"]
+  N15["Standing: Editions published, discovery rate after 10 answers, Backs received"]
+  N1 --&gt; N2
+  N2 --&gt; N3
+  N3 -- "Declined" --&gt; N4
+  N3 -- "Approved" --&gt; N5
+  N5 --&gt; N6
+  N6 --&gt; N7
+  N7 --&gt; N8
+  N8 --&gt; N9
+  N9 --&gt; N10
+  N10 -- "No" --&gt; N11
+  N10 -- "Yes" --&gt; N12
+  N11 --&gt; N7
+  N12 --&gt; N13
+  N13 --&gt; N14
+  N14 --&gt; N15
+</pre>
+<details class="textver"><summary>Text version of this flow</summary><ol class="flow"><li class="node"><span class="n">1</span><div><div class="t">Apply to curate from Me</div><ul class="next"><li><b></b>→ 2 <span>Form: why, and links to…</span></li></ul></div></li><li class="node"><span class="n">2</span><div><div class="t">Form: why, and links to past work</div><ul class="next"><li><b></b>→ 3 <span>Admin decision</span></li></ul></div></li><li class="node decision"><span class="n">3</span><div><div class="t">Admin decision</div><ul class="next"><li><b>Declined </b>→ 4 <span>Stays a listener</span></li><li><b>Approved </b>→ 5 <span>Curator Studio</span></li></ul></div></li><li class="node"><span class="n">4</span><div><div class="t">Stays a listener</div></div></li><li class="node"><span class="n">5</span><div><div class="t">Curator Studio</div><ul class="next"><li><b></b>→ 6 <span>Pick a day: today to…</span></li></ul></div></li><li class="node"><span class="n">6</span><div><div class="t">Pick a day: today to 14 days ahead</div><ul class="next"><li><b></b>→ 7 <span>Add 5 to 7 picks</span></li></ul></div></li><li class="node"><span class="n">7</span><div><div class="t">Add 5 to 7 picks</div><ul class="next"><li><b></b>→ 8 <span>Each pick: tags, why it…</span></li></ul></div></li><li class="node"><span class="n">8</span><div><div class="t">Each pick: tags, why it is here, liner note with source link</div><ul class="next"><li><b></b>→ 9 <span>Checks run: rules, link, lookups,…</span></li></ul></div></li><li class="node"><span class="n">9</span><div><div class="t">Checks run: rules, link, lookups, agent read</div><ul class="next"><li><b></b>→ 10 <span>Required checks pass?</span></li></ul></div></li><li class="node decision"><span class="n">10</span><div><div class="t">Required checks pass?</div><ul class="next"><li><b>No </b>→ 11 <span>Message says exactly what to…</span></li><li><b>Yes </b>→ 12 <span>Submit up to 3 gigs…</span></li></ul></div></li><li class="node"><span class="n">11</span><div><div class="t">Message says exactly what to fix</div><ul class="next"><li><b></b>→ 7 <span>Add 5 to 7 picks</span></li></ul></div></li><li class="node"><span class="n">12</span><div><div class="t">Submit up to 3 gigs for team verification</div><ul class="next"><li><b></b>→ 13 <span>Publish</span></li></ul></div></li><li class="node"><span class="n">13</span><div><div class="t">Publish</div><ul class="next"><li><b></b>→ 14 <span>Live until city midnight, then…</span></li></ul></div></li><li class="node"><span class="n">14</span><div><div class="t">Live until city midnight, then locked</div><ul class="next"><li><b></b>→ 15 <span>Standing: Editions published, discovery rate…</span></li></ul></div></li><li class="node"><span class="n">15</span><div><div class="t">Standing: Editions published, discovery rate after 10 answers, Backs received</div></div></li></ol></details>
+        <figcaption>Curators are approved by an admin, never self-selected. Standing is shown as components, never one score.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="f5">
+    <div class="tag">Flow 5</div>
+    <h2>Artist and fan connection</h2>
+    <div class="panel scroll">
+      <figure>
+        <pre class="mermaid">
+flowchart TD
+  N1["Reader finds an artist"]
+  N2["Browse: Artists in the area, or from a pick"]
+  N3["Artist card"]
+  N4{"Connect?"}
+  N5["Can still read the public bio"]
+  N6["Artist can see your name"]
+  N7["See the artist's updates"]
+  N8["Ask one question a day"]
+  N9["Disconnect at any time"]
+  N10["Artist replies"]
+  N11["Only you and the artist see the reply"]
+  N1 --&gt; N2
+  N2 --&gt; N3
+  N3 --&gt; N4
+  N4 -- "No" --&gt; N5
+  N4 -- "Yes" --&gt; N6
+  N6 --&gt; N7
+  N6 --&gt; N8
+  N6 --&gt; N9
+  N8 --&gt; N10
+  N10 --&gt; N11
+</pre>
+<details class="textver"><summary>Text version of this flow</summary><ol class="flow"><li class="node"><span class="n">1</span><div><div class="t">Reader finds an artist</div><ul class="next"><li><b></b>→ 2 <span>Browse: Artists in the area,…</span></li></ul></div></li><li class="node"><span class="n">2</span><div><div class="t">Browse: Artists in the area, or from a pick</div><ul class="next"><li><b></b>→ 3 <span>Artist card</span></li></ul></div></li><li class="node"><span class="n">3</span><div><div class="t">Artist card</div><ul class="next"><li><b></b>→ 4 <span>Connect?</span></li></ul></div></li><li class="node decision"><span class="n">4</span><div><div class="t">Connect?</div><ul class="next"><li><b>No </b>→ 5 <span>Can still read the public…</span></li><li><b>Yes </b>→ 6 <span>Artist can see your name</span></li></ul></div></li><li class="node"><span class="n">5</span><div><div class="t">Can still read the public bio</div></div></li><li class="node"><span class="n">6</span><div><div class="t">Artist can see your name</div><ul class="next"><li><b></b>→ 7 <span>See the artist&#x27;s updates</span></li><li><b></b>→ 8 <span>Ask one question a day</span></li><li><b></b>→ 9 <span>Disconnect at any time</span></li></ul></div></li><li class="node"><span class="n">7</span><div><div class="t">See the artist&#x27;s updates</div></div></li><li class="node"><span class="n">8</span><div><div class="t">Ask one question a day</div><ul class="next"><li><b></b>→ 10 <span>Artist replies</span></li></ul></div></li><li class="node"><span class="n">9</span><div><div class="t">Disconnect at any time</div></div></li><li class="node"><span class="n">10</span><div><div class="t">Artist replies</div><ul class="next"><li><b></b>→ 11 <span>Only you and the artist…</span></li></ul></div></li><li class="node"><span class="n">11</span><div><div class="t">Only you and the artist see the reply</div></div></li></ol></details>
+        <figcaption>Connecting is a choice the fan makes knowing the artist sees their name. No open messaging.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="f6">
+    <div class="tag">Flow 6</div>
+    <h2>Curator, artist and fan together</h2>
+    <div class="panel scroll">
+      <figure>
+        <pre class="mermaid">
+flowchart TD
+  N1["Artist pitches a track"]
+  N2["Curator reads the pitch in the Studio"]
+  N3["Curator runs the checks"]
+  N4{"Fits the 80/20 rule?"}
+  N5["Not used in this Edition"]
+  N6["Added as a New and upcoming pick. Curator ticks if they know the artist"]
+  N7["Edition goes live"]
+  N8["Reader hears the track"]
+  N9["Discovery check: something new?"]
+  N10["Reader opens the artist card"]
+  N11["Reader can suggest a song back to the curator"]
+  N12["Curator's discovery rate, hidden until 10 answers"]
+  N13["Connect to the artist (Flow 5)"]
+  N14["Artist space shows the new fan"]
+  N1 --&gt; N2
+  N2 --&gt; N3
+  N3 --&gt; N4
+  N4 -- "No" --&gt; N5
+  N4 -- "Yes" --&gt; N6
+  N6 --&gt; N7
+  N7 --&gt; N8
+  N8 --&gt; N9
+  N8 --&gt; N10
+  N8 --&gt; N11
+  N9 --&gt; N12
+  N10 --&gt; N13
+  N13 --&gt; N14
+</pre>
+<details class="textver"><summary>Text version of this flow</summary><ol class="flow"><li class="node"><span class="n">1</span><div><div class="t">Artist pitches a track</div><ul class="next"><li><b></b>→ 2 <span>Curator reads the pitch in…</span></li></ul></div></li><li class="node"><span class="n">2</span><div><div class="t">Curator reads the pitch in the Studio</div><ul class="next"><li><b></b>→ 3 <span>Curator runs the checks</span></li></ul></div></li><li class="node"><span class="n">3</span><div><div class="t">Curator runs the checks</div><ul class="next"><li><b></b>→ 4 <span>Fits the 80/20 rule?</span></li></ul></div></li><li class="node decision"><span class="n">4</span><div><div class="t">Fits the 80/20 rule?</div><ul class="next"><li><b>No </b>→ 5 <span>Not used in this Edition</span></li><li><b>Yes </b>→ 6 <span>Added as a New and…</span></li></ul></div></li><li class="node"><span class="n">5</span><div><div class="t">Not used in this Edition</div></div></li><li class="node"><span class="n">6</span><div><div class="t">Added as a New and upcoming pick. Curator ticks if they know the artist</div><ul class="next"><li><b></b>→ 7 <span>Edition goes live</span></li></ul></div></li><li class="node"><span class="n">7</span><div><div class="t">Edition goes live</div><ul class="next"><li><b></b>→ 8 <span>Reader hears the track</span></li></ul></div></li><li class="node"><span class="n">8</span><div><div class="t">Reader hears the track</div><ul class="next"><li><b></b>→ 9 <span>Discovery check: something new?</span></li><li><b></b>→ 10 <span>Reader opens the artist card</span></li><li><b></b>→ 11 <span>Reader can suggest a song…</span></li></ul></div></li><li class="node"><span class="n">9</span><div><div class="t">Discovery check: something new?</div><ul class="next"><li><b></b>→ 12 <span>Curator&#x27;s discovery rate, hidden until…</span></li></ul></div></li><li class="node"><span class="n">10</span><div><div class="t">Reader opens the artist card</div><ul class="next"><li><b></b>→ 13 <span>Connect to the artist (Flow…</span></li></ul></div></li><li class="node"><span class="n">11</span><div><div class="t">Reader can suggest a song back to the curator</div></div></li><li class="node"><span class="n">12</span><div><div class="t">Curator&#x27;s discovery rate, hidden until 10 answers</div></div></li><li class="node"><span class="n">13</span><div><div class="t">Connect to the artist (Flow 5)</div><ul class="next"><li><b></b>→ 14 <span>Artist space shows the new…</span></li></ul></div></li><li class="node"><span class="n">14</span><div><div class="t">Artist space shows the new fan</div></div></li></ol></details>
+        <figcaption>This is the loop the project is about: a local artist is found through a person, then heard, then followed up directly.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="gigs">
+    <div class="tag">Flow 7</div>
+    <h2>Gig entry and verification</h2>
+    <div class="panel scroll">
+      <figure>
+        <pre class="mermaid">
+flowchart TD
+  N1["Curator or artist raises a gig: name, venue, date, source link"]
+  N2["Automatic checks: city matches, date is in the future, link opens"]
+  N3{"Pass?"}
+  N4["Sent back with the reason"]
+  N5["Queue for the Folio team"]
+  N6["Team member checks legitimacy: venue, promoter or ticket page, artist"]
+  N7{"Legitimate?"}
+  N8["Shown in Browse under Nearby events, with who raised it"]
+  N9["Rejected, submitter told why"]
+  N10["Hidden automatically after the date"]
+  N1 --&gt; N2
+  N2 --&gt; N3
+  N3 -- "No" --&gt; N4
+  N3 -- "Yes" --&gt; N5
+  N5 --&gt; N6
+  N6 --&gt; N7
+  N7 -- "Yes" --&gt; N8
+  N7 -- "No" --&gt; N9
+  N8 --&gt; N10
+</pre>
+<details class="textver"><summary>Text version of this flow</summary><ol class="flow"><li class="node"><span class="n">1</span><div><div class="t">Curator or artist raises a gig: name, venue, date, source link</div><ul class="next"><li><b></b>→ 2 <span>Automatic checks: city matches, date…</span></li></ul></div></li><li class="node"><span class="n">2</span><div><div class="t">Automatic checks: city matches, date is in the future, link opens</div><ul class="next"><li><b></b>→ 3 <span>Pass?</span></li></ul></div></li><li class="node decision"><span class="n">3</span><div><div class="t">Pass?</div><ul class="next"><li><b>No </b>→ 4 <span>Sent back with the reason</span></li><li><b>Yes </b>→ 5 <span>Queue for the Folio team</span></li></ul></div></li><li class="node"><span class="n">4</span><div><div class="t">Sent back with the reason</div></div></li><li class="node"><span class="n">5</span><div><div class="t">Queue for the Folio team</div><ul class="next"><li><b></b>→ 6 <span>Team member checks legitimacy: venue,…</span></li></ul></div></li><li class="node"><span class="n">6</span><div><div class="t">Team member checks legitimacy: venue, promoter or ticket page, artist</div><ul class="next"><li><b></b>→ 7 <span>Legitimate?</span></li></ul></div></li><li class="node decision"><span class="n">7</span><div><div class="t">Legitimate?</div><ul class="next"><li><b>Yes </b>→ 8 <span>Shown in Browse under Nearby…</span></li><li><b>No </b>→ 9 <span>Rejected, submitter told why</span></li></ul></div></li><li class="node"><span class="n">8</span><div><div class="t">Shown in Browse under Nearby events, with who raised it</div><ul class="next"><li><b></b>→ 10 <span>Hidden automatically after the date</span></li></ul></div></li><li class="node"><span class="n">9</span><div><div class="t">Rejected, submitter told why</div></div></li><li class="node"><span class="n">10</span><div><div class="t">Hidden automatically after the date</div></div></li></ol></details>
+        <figcaption>Nothing appears until a team member approves it. The team is small, so cap how many gigs one person can have waiting, and check who approves.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="open">
+    <div class="tag">Decisions</div>
+    <h2>Decided and still open</h2>
+    <ul>
+      <li><b>Decided:</b> the agent only checks that a pick's source is real and mentions the artist or fact. It runs on every pick. Picking and curating is human work.</li>
+      <li><b>Decided:</b> the consent script says the app can ask for location, and that an artist sees a fan's name when the fan connects.</li>
+      <li><b>Decided:</b> gig entry means someone raises an upcoming gig (name, venue, date, source link). Curators and artists can both submit. A Folio team member verifies the gig is legitimate before it shows in Browse under Nearby events. See the gig flow below.</li>
+      <li><b>Proposed:</b> readers see only the source link on each pick, not a "checked" badge, until we test in evaluation what a badge makes people assume.</li>
+    </ul>
+  </section>
+</main>

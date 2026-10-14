@@ -7,7 +7,7 @@
 
 Hi, we're Team MOTIF. Between the four of us we've got design, tech, art and research backgrounds, and we've deliberately split our roles to stretch each of us rather than just play to what we're already good at.
 
-Dylan's been leading our research synthesis and documentation. Pranav's driving audience research and content. Mohammad owns the technical build, especially scoping our AR feature. And Paul's handling media and interview capture.
+Dylan's been leading our research synthesis and documentation. Pranav's driving audience research and content. Shaz owns the technical build, especially scoping our AR feature. And Paul's handling media and interview capture.
 
 We're a small team, but between us we've already done six user interviews, which we'll get into shortly.
 
@@ -21,7 +21,7 @@ Globally, people spend almost 21 hours a week listening to music, and 44% are ac
 
 But recent research from this year's WWW conference found something interesting: recommendation algorithms actually narrow what we're exposed to rather than opening it up — they flatten the differences between what different people hear.
 
-And this isn't just one of us saying it — three of us interviewed completely different people, independently, and got the same answer back. Dylan's participant Aloysious said, quoting directly, *"I just want it to be more human focused. Algorithm has ruined the taste — no fun, no randomness to it."* Pranav's participant said, *"Just tell me what's happening near me that people I trust are into. Not what a machine thinks I'll click."* And Mohammad's participant Minahil, a resident doctor, said everything feels very algorithm-driven and she wants to discover things more naturally.
+And this isn't just one of us saying it — three of us interviewed completely different people, independently, and got the same answer back. Dylan's participant R1-F said, quoting directly, *"I just want it to be more human focused. Algorithm has ruined the taste — no fun, no randomness to it."* Pranav's participant said, *"Just tell me what's happening near me that people I trust are into. Not what a machine thinks I'll click."* And Shaz's participant R1-C, a resident doctor, said everything feels very algorithm-driven and she wants to discover things more naturally.
 
 Three separate interviews, same gap. That's what we're designing into.
 
@@ -71,9 +71,9 @@ Thanks — happy to take any questions.
 
 ## Quick reference — all six interview quotes on hand for Q&A
 
-- **Aloysious (28, India):** *"I just want it to be more human focused, everything curated by humans, like it was in the 2000s. Algorithm has ruined the taste — there's no fun, no randomness to it."*
-- **Minahil (Resident Doctor):** *"Everything feels very algorithm-driven. I'd like to discover things more naturally instead of being shown the same type of content."*
-- **Sully (Business student):** *"It can feel like every platform is trying to sell you something. I'd rather just explore and find stuff because I genuinely like it."*
-- **Pritesh (Ex-UQ):** *"Spotify gives me the same forty songs. It's narrowed rather than opened up. The stuff I actually like, I found off it."*
-- **Marushka (Ex-UQ):** *"My playlist is basically just a large puzzle with pieces from different people I've met across my entire life."*
-- **Rayyan (1st-yr Econ):** *"There's just too much stuff. Sometimes I want to find something new without scrolling forever."*
+- **R1-F (28, India):** *"I just want it to be more human focused, everything curated by humans, like it was in the 2000s. Algorithm has ruined the taste — there's no fun, no randomness to it."*
+- **R1-C (Resident Doctor):** *"Everything feels very algorithm-driven. I'd like to discover things more naturally instead of being shown the same type of content."*
+- **R1-E (Business student):** *"It can feel like every platform is trying to sell you something. I'd rather just explore and find stuff because I genuinely like it."*
+- **R1-B (Ex-UQ):** *"Spotify gives me the same forty songs. It's narrowed rather than opened up. The stuff I actually like, I found off it."*
+- **R1-A (Ex-UQ):** *"My playlist is basically just a large puzzle with pieces from different people I've met across my entire life."*
+- **R1-D (1st-yr Econ):** *"There's just too much stuff. Sometimes I want to find something new without scrolling forever."*

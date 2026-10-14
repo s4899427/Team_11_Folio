@@ -31,7 +31,7 @@ module.exports = {
           'cream-dim': 'hsl(var(--muted-foreground) / <alpha-value>)',
           burgundy: '#7C1F3A',
           terracotta: '#C25B3F',
-          saffron: '#D4A24E',
+          saffron: 'rgb(var(--folio-saffron-rgb) / <alpha-value>)',
           green: '#2F5447',
           clay: '#8B5A3C',
           sage: '#6B7F6E',

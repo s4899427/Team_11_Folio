@@ -1,52 +1,45 @@
 import { Outlet, Link, useLocation, Navigate } from "react-router-dom";
-import { Sun, Archive, User, Plus } from "lucide-react";
-import { useComposer } from "@/lib/folio-composer";
+import { Sun, Compass, User, PenLine, ShieldCheck } from "lucide-react";
 import { useFolio } from "@/lib/folio-store";
-import PostComposer from "./PostComposer";
 import { cn } from "@/lib/utils";
 
 const TABS = [
   { to: "/", label: "Today", icon: Sun },
-  { to: "/archive", label: "Archive", icon: Archive },
+  { to: "/archive", label: "Browse", icon: Compass },
   { to: "/me", label: "Me", icon: User },
 ];
 
 export default function FolioLayout() {
   const { pathname } = useLocation();
-  const { openComposer } = useComposer();
-  const { onboarded } = useFolio();
-  if (!onboarded) return <Navigate to="/onboarding" replace />;
+  const { seenIntro, session, isCurator, isAdmin } = useFolio();
+  if (!seenIntro) return <Navigate to="/welcome" replace />;
+  // Each role gets its own tab, so the work they came to do is one tap away.
+  const tabs = [
+    ...TABS.slice(0, 2),
+    ...(isAdmin ? [{ to: "/admin", label: "Team", icon: ShieldCheck }] : []),
+    ...(isCurator ? [{ to: "/studio", label: "Studio", icon: PenLine }] : []),
+    TABS[2],
+  ];
+  void session;
 
   return (
     <>
-      <main className="min-h-screen pb-36">
+      <main className="min-h-screen pb-28">
         <Outlet />
       </main>
-
-      <div className="fixed bottom-0 inset-x-0 z-40">
-        <div className="max-w-lg mx-auto px-5 pb-2">
-          <button onClick={() => openComposer()} className="w-full flex items-center justify-center gap-2 py-3.5 bg-folio-cream text-folio-ink folio-eyebrow hover:bg-white transition-colors active:scale-[0.98] transition-transform">
-            <Plus className="w-4 h-4" strokeWidth={2.5} />
-            Make a Post
-          </button>
+      <nav className="fixed bottom-0 inset-x-0 z-40 border-t border-border bg-folio-ink/95 backdrop-blur-md">
+        <div className="max-w-lg mx-auto flex">
+          {tabs.map(({ to, label, icon: Icon }) => {
+            const active = to === "/" ? pathname === "/" : pathname.startsWith(to);
+            return (
+              <Link key={to} to={to} data-testid={`tab-${label.toLowerCase()}`} className="flex-1 flex flex-col items-center gap-1 py-3 group">
+                <Icon className={cn("w-5 h-5 transition-colors", active ? "text-folio-saffron" : "text-folio-cream-dim group-hover:text-folio-cream")} strokeWidth={active ? 2 : 1.5} />
+                <span className={cn("folio-eyebrow transition-colors", active ? "text-folio-cream" : "text-folio-cream-dim")}>{label}</span>
+              </Link>
+            );
+          })}
         </div>
-
-        <nav className="border-t border-border bg-folio-ink/95 backdrop-blur-md">
-          <div className="max-w-lg mx-auto flex">
-            {TABS.map(({ to, label, icon: Icon }) => {
-              const active = to === "/" ? pathname === "/" : pathname.startsWith(to);
-              return (
-                <Link key={to} to={to} className="flex-1 flex flex-col items-center gap-1 py-3 group">
-                  <Icon className={cn("w-5 h-5 transition-colors", active ? "text-folio-saffron" : "text-folio-cream-dim group-hover:text-folio-cream")} strokeWidth={active ? 2 : 1.5} />
-                  <span className={cn("folio-eyebrow transition-colors", active ? "text-folio-cream" : "text-folio-cream-dim")}>{label}</span>
-                </Link>
-              );
-            })}
-          </div>
-        </nav>
-      </div>
-
-      <PostComposer />
+      </nav>
     </>
   );
 }

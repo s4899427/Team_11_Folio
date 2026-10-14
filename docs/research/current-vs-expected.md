@@ -1,3 +1,5 @@
+> **Status: superseded.** Written for the earlier multi-domain MOTIF/Folio concept (Drop and Remix, Today's Thread, AR dress-up). The current product is the music-first Folio; see `docs/final/MVP_BRIEF.md` and `docs/MVP_ROLES_AND_FLOWS.md`. Kept as process evidence.
+
 # What We Have vs. What Users Expect
 Built from all 13 interviews (6 Round 1 + 7 Round 2, including Dylan's and his interviewee's).
 

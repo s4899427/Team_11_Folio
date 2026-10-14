@@ -2,51 +2,40 @@
 
 DECO3500 Social & Mobile Computing — Team 11, Semester 2 2026
 
+> **Marking guide:** start at [`submission/00_START_HERE/README.md`](./submission/00_START_HERE/README.md). It maps every marking criterion to its evidence (MVP specification, five main flows with test results and screenshots, social and mobile concept map, design process, evaluation, ethics, pitch and Q&A).
+
+
 ## What this is
 
-Folio is our answer to how music, fashion, art and food discovery actually happens for people — not through an algorithm guessing what you'll click next, but through someone you trust picking something out for you.
+Folio is a **daily, human-curated music Edition for your city** (Brisbane curated today; Seoul and Mumbai have verified city notes and an apply-to-curate path). Your city sets the time zone and midnight lock, the greeting, the local "Did you know?" facts and the Nearby layer. Open the app and there is one Edition: eight to twelve picks chosen by a named curator, each with a short reason and a **Liner Note** (one checkable fact, with a source). Every Edition mixes artists you may already know with 2-4 new and upcoming local artists (at least 2, at most 4, never above 45%), and music picks are Australian artists, tagged by stage and origin. No algorithm: there are no likes, and comments don't rank anything. At the city's midnight the Edition locks into the **Archive** and is never edited again.
 
-The app opens on **Today**: one Thread, picked by whoever's curating that day, built around a theme. It's not locked to one kind of content — could be a song, a place, a ritual, whatever fits. People post into it throughout the day, and the curator features posts by their own judgement, not by how many likes something got. At midnight the Thread locks for good and drops into **Archive** — a dated record you can scroll back through, not something that just disappears.
+- **Today / Browse / Me** are the three tabs. Browse holds the curators, the artists you can connect to, and the Archive. Reading is open to guests.
+- **Curators** build and publish Editions in the Curator Studio (one Edition per day; no source link, no publish).
+- **Artists** pitch a track to a curator, post short updates to fans who connected, and answer one question a day from each. Fans choose to connect (the artist sees their name); there are no follower counts and no open messaging. **Nearby** shows curator gig tips and links to Brisbane venues.
 
-**Me** is your profile — your communities, your saved stuff.
-
-That's it. No algorithm deciding what you see. Likes and comments don't rank anything.
-
-## Start here
-
-Before touching anything else in this repo, read [`docs/requirements/master-spec.docx`](./docs/requirements/master-spec.docx) — it's the source of truth for the whole product: navigation, every screen, the full posting flow, all 12 communities, how the curator model works, and the design principles we built around.
+What changed since Week 9 and what is deliberately not built: [`docs/requirements/music-first-addendum.md`](./docs/requirements/music-first-addendum.md). Research basis and rationale remain in [`docs/requirements/master-spec.docx`](./docs/requirements/master-spec.docx).
 
 ## Try the prototype
 
 **Live:** https://s4899427.github.io/Team_11_Folio/
 
-Works on desktop and mobile, nothing to install.
-
-**Running it locally** (if you're developing, or Pages is down for some reason):
-
 ```bash
 cd prototype
 npm install
-npm run dev
+npm run dev      # http://localhost:5173
+npm test         # unit tests (time zones, cities, voting rules, validation, seed integrity)
+bash supabase/rls_test.sh   # 65 database-rule checks on a throwaway Postgres (needs postgres installed)
 ```
 
-Open whatever URL it prints (usually `http://localhost:5173`). No real login — it's simulated, local-only auth, since the brief specifically says not to bother building real authentication for a proof-of-concept.
-
-### If Pages ever needs setting up again
-
-The repo has a GitHub Actions workflow (`.github/workflows/deploy.yml`) that builds `prototype/` and pushes it to Pages automatically on every push to `main`. If it's ever off:
-
-1. Settings → Pages → Source: **GitHub Actions**
-2. Push to `main`, or trigger it manually from the Actions tab → *Deploy Folio prototype to GitHub Pages* → Run workflow
-3. Give it a minute — the live URL shows up in the run summary and under Settings → Pages
-
-Routing is hash-based (`/#/archive`, `/#/me`, etc.) on purpose — that's what lets it work as a static site on Pages without breaking on a refresh.
+Use **Join as a guest** to try it without an email. Runs in **demo mode** by default (data stays on the device). To share data across devices, follow [`docs/SUPABASE_SETUP.md`](./docs/SUPABASE_SETUP.md).
 
 ## Repo guide
 
 | Folder | What's in it |
 |---|---|
-| `prototype/` | The working prototype (React + Vite) |
+| `prototype/` | The working prototype (React + Vite); `supabase/schema.sql` is the database |
+| `docs/evaluation/` | Evaluation kit (protocol, scripts, observation sheet). No results until sessions are run |
+| `docs/CURATOR_GOVERNANCE.md` | How curators are backed, tiers, risks. Thresholds are hypotheses |
 | `docs/requirements/` | `master-spec.docx` (current) + earlier requirements draft |
 | `docs/research/` | Interviews (Round 1 + Round 2, de-identified), synthesis, current-vs-expected, use cases |
 | `docs/design/` | UX specs and the SMC theory-to-feature mapping |
@@ -61,6 +50,9 @@ Check the [Wiki](../../wiki) for the Design Process Overview, Ethical Considerat
 
 | Name | Role |
 |---|---|
-| Dylan | Research synthesis & documentation |
-| Pranav | Content & audience research |
-| Mohammad | Technical build |
+| Dylan | Lead, research synthesis, documentation, evaluation sessions |
+| Pranav | Technical build, shared database, deployment |
+| Shaz | Audience research, design, poster, pitch and demo |
+
+## AI use disclosure
+The prototype code was largely written with Claude (Anthropic) under the team's direction: architecture, UI, database rules and tests. The research, requirements, evaluation, ethics and reflections are the team's own. A full per-section AI-use appendix with prompts, as the course requires, belongs in the submission; see `docs/AI_USE.md` (to be completed by the team).

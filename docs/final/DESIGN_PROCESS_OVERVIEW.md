@@ -1,0 +1,41 @@
+# Design process overview: Folio
+
+*DECO3500 Social & Mobile Computing, Team 11. Wiki page. Placeholders in **[square brackets]** are evidence we have not collected yet; they are filled after the evaluation sessions, not invented.*
+
+**Poster and promotional material:** [link, added after the tradeshow]  
+**Prototype:** https://s4899427.github.io/Team_11_Folio/ (use "Join as a guest"; no login needed)  
+**Repository:** https://github.com/s4899427/Team_11_Folio
+
+## Summary
+Newcomers to a city, and people tired of algorithmic feeds, struggle to find a local music scene they can trust and talk about. Folio offers one human-picked music Edition per city per day, locked at the city's midnight, with no likes and no ranking. Every pick has a reason and a Liner Note with a checkable source. Readers, artists and curators connect through shared comments, a Discovery check and an artist–fan link, with the rules built into the database.
+
+## Process
+
+**1. Starting wide (MOTIF).** We began with a wiki of world culture (music, fashion, art, food). Six Round 1 interviews converged, unprompted, on one complaint: algorithmic discovery has flattened taste and people want something more human. Peer feedback (Team 8) asked who decides accuracy when sources disagree.
+
+**2. Narrowing and pivots.** Our pivot log records eight changes, such as dropping full streaming for licensing reasons, replacing a single "accuracy" model with several attributed perspectives, and moving from a browsable library to one daily curated Thread. Course feedback said the daily curated experience was our strongest idea. We also renamed the app (MOTIF to Folio) after finding clashes with existing products.
+
+**3. Round 2 research.** Five more interviews (two interviewers) found that all five drew the same line between inspiration and killing time, and that interest in a curator-led daily offer depended on the curator being credible. One participant was a team member's self-interview; we treat it as weak evidence. Participants also described coordinating before big occasions, but treated it as a prompt, not a rule; that idea was later dropped with the multi-domain scope.
+
+**4. Music-first pivot (after Week 9).** We repositioned to one domain, music, for one city, Brisbane. **[REVIEW: drafted from the team record, confirm or rewrite]** Our tutor's Week 9 stand-up feedback was to scope down to a single domain rather than stay cross-domain, and to keep the curator mechanic a supporting feature. Two of us independently proposed music. We chose Brisbane because it is where we and our interviewees are, and because the clearest use case we found is an international student new to Australia who wants to learn what local people actually listen to. The Thread became an Edition of 8 to 12 picks; each gained a Liner Note; roles became guest, listener, artist and curator. The design objective became: invite people in a place to discover music through a named human, and to back curators who show them something new.
+
+**5. Building and simulating.** The prototype (React and Vite) runs on a shared Supabase database so several phones see the same Edition. Rules sit in the database as well as the interface: one Edition per city per day, no publishing without a source, curators approved by the team, comments only on the current Edition. We tested the rules (65 checks on a throwaway database; 33 checks on the live project). We balanced real function (shared data, roles, midnight lock) with simulation (seed Editions, Brisbane only, curator-raised gigs, Seoul and Mumbai marked "Coming soon"). A Base44 build was an early side experiment; a security scan found 14 issues, so we did not use it with real participants.
+
+**6. Evaluation (formative, in context, several people at once).** Following the unit, we adapted methods to social and mobile use rather than using SUS or TAM: sessions with groups using the same Edition at the same time, observation and interview, critical questions (including when would you not use it), and heuristics adapted from locales-based groupware (Greenberg et al.). The kit lists eleven questions covering curator trust, Nearby use, shared facts, the Discovery check, awareness of others, the place-based layer, the mix of new artists, artist connection, avoiding unwanted interaction and physical context. **[Insert: dates, number of groups and participants, setting, and the main findings for each question. For each finding, state what changed in the design.]**
+
+**7. What changed.** Design changes driven by the process so far: no likes (Round 1 and 2), sourced Liner Notes (peer feedback on accuracy), Nearby moved into Browse and a city picker with opt-in location (context), curator "applied for, not chosen" (curation as gatekeeping), a wider Edition of 8 to 12 picks (after reviewing the first build we judged 5 to 7 picks too thin; this is a team judgement, not yet a finding), and a revised new-artist mix. **[Add changes made after the sessions.]**
+
+## Theory and ethics
+We use the unit's frameworks for location and locales, and Winner (1980) and Akrich (1992) to argue that our rules are political choices built into the software. Full analysis: Ethical Considerations page. Main open risk: with few curators the scene will be uneven.
+
+## Limitations
+Small, convenience-based samples; short evaluation; one city; the prototype stores profile pictures in the database; Wikipedia-only city facts are being cross-checked; unreviewed greetings are not shown for cities that are not live.
+
+## Who did what
+| Person | Contribution |
+|---|---|
+| Dylan | **[REVIEW]** Team lead. Research synthesis and documentation. Product decisions (Edition size, new-artist mix, roles and flows). Set up and tested the shared Supabase database. Interviewed three participants. |
+| Pranav | **[REVIEW]** Content and audience research (one interview transcript). From 9 Oct, technical owner: deployment, GitHub Actions secrets, architecture and README, tradeshow kit. |
+| Shaz | **[REVIEW]** Earlier: technical build. Interviewed three participants. From 9 Oct: audience research, poster, design, pitch and demo script. |
+
+*AI use: see `docs/AI_USE.md`.*

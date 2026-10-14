@@ -36,6 +36,7 @@
     --folio-burgundy: #7C1F3A;
     --folio-terracotta: #C25B3F;
     --folio-saffron: #D4A24E;
+    --folio-saffron-rgb: 212 162 78;
     --folio-green: #2F5447;
     --folio-clay: #8B5A3C;
     --folio-sage: #6B7F6E;
@@ -76,6 +77,8 @@
 }
 
 @layer components {
+  [lang="ko"] { font-family: "Noto Sans KR", var(--font-body); }
+  [lang="mr"], [lang="hi"] { font-family: "Noto Sans Devanagari", var(--font-body); }
   .folio-wordmark { font-family: var(--font-display); font-weight: 300; letter-spacing: 0.42em; text-transform: uppercase; }
   .folio-eyebrow { font-family: var(--font-body); font-size: 0.625rem; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; }
   .folio-serif { font-family: var(--font-display); }
