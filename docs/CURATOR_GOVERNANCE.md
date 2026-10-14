@@ -26,6 +26,18 @@ Folio's job is both to help newcomers get to know the established names and to s
 - The mix is a hypothesis about what a newcomer needs. Test it (Evaluation Kit Q8) and change it if the evidence says so.
 - Founding (seed) Editions are history lessons by the team and are exempt.
 
+## Verifying new and local artists: two sources and a signature (implemented 15 Oct, `validate.js`, Studio)
+A pick marked "new and upcoming" must carry, before an Edition can publish:
+1. **The artist's own page** (SoundCloud, Bandcamp or another artist-owned page). The Studio checks that the link is on the site the curator chose; look-alike domains fail.
+2. **An independent source** (radio, venue, press or QMusic) with a name and link, on a different site from the artist's page.
+3. **A local note**: how the curator knows the artist is based in the city (profile location, a gig, a venue).
+4. **The curator's attestation**: "I confirm this is human-made, local and new. I am accountable for this pick."
+Readers see the local note and both links on the pick.
+
+**Limits, stated plainly.** Folio does not connect to SoundCloud, Bandcamp or any streaming service and shows no stream counts: we have not verified API access or terms, and a popularity number would reward the already-popular, against the no-ranking rule. Folio cannot detect AI-generated music; the check is human, and accountability sits with the named curator, not an algorithm. A curator can still sign falsely. The mitigations are visibility (the pick shows its sources to every reader), the discovery check, and removal by the team. Whether two sources is the right bar is a hypothesis to test in evaluation.
+
+**Candidate independent sources (to verify before we name them in the app):** triple j Unearthed profiles, QMusic, 4ZZZ, APRA AMCOS, venue listings. None has been verified by the team yet.
+
 ## Why not likes
 Likes reward what is already popular and push everyone toward the same taste (Anwar's homogenisation concern in the portfolio readings). Asking "did this show you something new?" rewards the opposite: finding what the reader did not know.
 

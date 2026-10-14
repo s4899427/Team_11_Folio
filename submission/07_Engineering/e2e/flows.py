@@ -82,6 +82,15 @@ with sync_playwright() as pw:
         p.fill(f'[aria-label="Pick {i} source name"]',"MusicBrainz"); p.fill(f'[aria-label="Pick {i} source link"]',"https://musicbrainz.org/")
     for i in (1,2,3):
         p.select_option(f'[aria-label="Pick {i} stage"]',"emerging")
+    p.get_by_test_id("publish").click(); p.wait_for_timeout(400)
+    check(F,"New artists without two sources and attestation are blocked", "own page" in p.get_by_test_id("studio-errors").inner_text() and "human-made" in p.get_by_test_id("studio-errors").inner_text())
+    p.select_option('[aria-label="Pick 1 artist page type"]',"bandcamp"); p.fill('[aria-label="Pick 1 artist page link"]',"https://soundcloud.com/x"); p.get_by_test_id("publish").click(); p.wait_for_timeout(300)
+    check(F,"Artist page link must match the chosen site", "not on Bandcamp" in p.get_by_test_id("studio-errors").inner_text())
+    for i in (1,2,3):
+        p.select_option(f'[aria-label="Pick {i} artist page type"]',"soundcloud"); p.fill(f'[aria-label="Pick {i} artist page link"]',f"https://soundcloud.com/artist{i}")
+        p.fill(f'[aria-label="Pick {i} independent source name"]',"4ZZZ"); p.fill(f'[aria-label="Pick {i} independent source link"]',f"https://4zzzfm.org.au/artist{i}")
+        p.fill(f'[aria-label="Pick {i} local note"]',"Profile says Brisbane; played The Zoo in 2026."); p.check(f'[aria-label="Pick {i} attestation"]')
+    p.get_by_test_id("evidence-0").scroll_into_view_if_needed(); shot(p,"F4-3b-two-sources")
     p.get_by_test_id("publish").click(); p.wait_for_timeout(600); shot(p,"F4-4-published")
     check(F,"Valid 8-pick Edition with 3 new artists publishes", "Published" in (p.get_by_test_id("studio-status").inner_text() if p.get_by_test_id("studio-status").count() else ""), p.inner_text("body")[-400:])
     signout(p)

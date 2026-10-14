@@ -4,7 +4,7 @@ import { brisbaneToday, addDays, msUntilBrisbaneMidnight, cityToday, msUntilMidn
 import { CITIES, CITY_LIST, detectCity, factOfTheDay } from "../src/lib/cities.js";
 import { canBack, backsLeft, discoveryRate, tierFor, BACKS_PER_MONTH, MIN_RESPONSES_TO_SHOW } from "../src/lib/standing.js";
 import { seedEditions } from "../src/lib/seed.js";
-import { validateEdition, emptyItem, MIN_ITEMS, emergingBounds, composition } from "../src/lib/validate.js";
+import { validateEdition, emptyItem, MIN_ITEMS, emergingBounds, composition, artistUrlMatchesType } from "../src/lib/validate.js";
 import { partOfDay } from "../src/lib/time.js";
 
 test("Brisbane date rolls over at 14:00 UTC, not UTC midnight", () => {
@@ -50,6 +50,7 @@ const good = () => ({
     ...emptyItem(), title: "Song " + i, artist: "Band", why: "A good reason here.",
     linerNote: { text: "A checkable fact about the song.", sourceLabel: "Src", sourceUrl: "https://example.com/" + i },
     stage: i < 2 ? "emerging" : "established",
+    evidence: i < 2 ? { artistType: "soundcloud", artistUrl: "https://soundcloud.com/band" + i, thirdLabel: "4ZZZ", thirdUrl: "https://4zzzfm.org.au/band" + i, localNote: "Plays Brisbane venues; profile says Brisbane.", attested: true } : undefined,
   })),
 });
 const ctx = { today: "2026-10-08", takenDates: [] };
@@ -185,4 +186,27 @@ test("part of day follows the city's own clock", () => {
   assert.equal(partOfDay("Asia/Kolkata", t), "evening");
   assert.equal(partOfDay("Asia/Seoul", t), "morning");
   assert.equal(partOfDay("Australia/Brisbane", new Date("2026-10-08T03:00:00Z")), "afternoon");
+});
+
+test("new artists need two independent sources, a local note and the curator's attestation", () => {
+  const msgs = (mut) => { const ed = good(); mut(ed.items[0].evidence); return validateEdition(ed, ctx).filter((m) => m.startsWith("Pick 1")); };
+  assert.equal(msgs(() => {}).length, 0);
+  assert.ok(msgs((e) => { e.artistUrl = ""; }).some((m) => m.includes("own page")));
+  assert.ok(msgs((e) => { e.artistUrl = "https://example.com/x"; }).some((m) => m.includes("not on SoundCloud")));
+  assert.ok(msgs((e) => { e.thirdUrl = ""; }).some((m) => m.includes("independent source")));
+  assert.ok(msgs((e) => { e.thirdUrl = "https://soundcloud.com/other"; }).some((m) => m.includes("different site")));
+  assert.ok(msgs((e) => { e.localNote = "yes"; }).some((m) => m.includes("how you know")));
+  assert.ok(msgs((e) => { e.attested = false; }).some((m) => m.includes("human-made")));
+  const ed = good(); ed.items[0].origin = "national";
+  assert.ok(validateEdition(ed, ctx).some((m) => m.includes("based in the city")));
+});
+
+test("artist page type checks the domain (subdomains ok, look-alikes not)", () => {
+  assert.ok(artistUrlMatchesType("soundcloud", "https://soundcloud.com/a"));
+  assert.ok(artistUrlMatchesType("soundcloud", "https://on.soundcloud.com/abc"));
+  assert.ok(artistUrlMatchesType("bandcamp", "https://someband.bandcamp.com/album/x"));
+  assert.ok(!artistUrlMatchesType("bandcamp", "https://bandcamp.com.evil.test/x"));
+  assert.ok(!artistUrlMatchesType("soundcloud", "https://notsoundcloud.com/a"));
+  assert.ok(artistUrlMatchesType("other", "https://artist.example/"));
+  assert.ok(!artistUrlMatchesType("other", "nonsense"));
 });

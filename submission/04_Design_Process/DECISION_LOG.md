@@ -19,6 +19,7 @@ One line per decision that changed the design: what, why, evidence, and what it 
 | 13 Oct 2026 | Roles and landing: member to Today, curator to Studio, team to Team screen; admin only via database flag | Each role sees what it needs; no self-promotion | Admin.jsx; migration 002 | More to test |
 | 13 Oct 2026 | Delete my account allowed except for curators and the team | Respect for users without breaking the archive | migration 002 | Manual removal for curators |
 | 13 Oct 2026 | Base44 kept as a throw-away look-and-feel prototype; the repo build is the proof of concept | Brief: do not let the prototype become the product | Base44 prototype link | Two codebases; only the repo build is evaluated |
+| 15 Oct | New and upcoming picks need two independent sources, a local note and the curator's attestation (no SoundCloud API, no stream counts) | Protect emerging local artists from non-local or AI-made acts replacing them; keep accountability with a named human; avoid unverified APIs and popularity metrics | Creative Australia *Listening In* (2025): algorithms may make emerging Australian artists harder to find; unit tests and UI flow F4 | Curators can still sign falsely; cannot detect AI music; extra effort per new-artist pick [REVIEW: check with evaluation] |
 
 ## Decisions still to make
 Ethics framework to apply; how markers access Studio and Team screens; tradeshow day.

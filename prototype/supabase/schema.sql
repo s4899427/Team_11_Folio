@@ -81,7 +81,7 @@ create table if not exists public.editions (
   edition_date date not null,
   title text not null check (char_length(title) between 1 and 80),
   blurb text not null default '',
-  items jsonb not null check (jsonb_typeof(items) = 'array' and jsonb_array_length(items) between 5 and 7),
+  items jsonb not null check (jsonb_typeof(items) = 'array' and jsonb_array_length(items) between 5 and 12),
   curator_id uuid not null references public.profiles(id),
   curator_name text not null,
   status text not null default 'published',

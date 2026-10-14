@@ -40,7 +40,7 @@ It signs up throwaway guests and checks, against the live project: sign-up works
 - The smoke test leaves a published Edition for today, a comment and `smoke-*` guest users. Delete them before publishing a real Edition (Table Editor: editions, comments; Authentication: Users).
 
 ## Round 2: admin, curator approval and delete account (13 Oct)
-Run once in Supabase > SQL Editor: the contents of `prototype/supabase/migrations/002_roles_admin.sql` (safe to run again).
+Run once each in Supabase > SQL Editor, in order (both safe to run again): `prototype/supabase/migrations/002_roles_admin.sql`, then `003_editions_up_to_12.sql` (lets Editions hold up to 12 picks; without it publishing 8 or more picks fails on the live database).
 Then make yourself a Folio team member (use your own uuid from Authentication > Users):
 ```sql
 update public.profiles set is_admin = true where id = '<your uuid>';

@@ -4,10 +4,33 @@ export const MIN_ITEMS = 8;
 export const MAX_ITEMS = 12;
 export const MAX_DAYS_AHEAD = 14;
 
+export const emptyEvidence = () => ({
+  artistType: "soundcloud", artistUrl: "",          // artist-owned page (their own profile)
+  thirdLabel: "", thirdUrl: "",                    // independent source (radio, venue, press, QMusic...)
+  localNote: "",                                   // how the curator knows they are local
+  attested: false,                                 // curator signs: human-made, local and new
+});
+
+export const ARTIST_PAGE_TYPES = [
+  { id: "soundcloud", label: "SoundCloud", hosts: ["soundcloud.com", "on.soundcloud.com"] },
+  { id: "bandcamp", label: "Bandcamp", hosts: ["bandcamp.com"] },
+  { id: "other", label: "Other artist-owned page", hosts: null },
+];
+
+const hostOf = (s) => { try { return new URL(s).hostname.replace(/^www\./, "").toLowerCase(); } catch { return ""; } };
+/** true when the URL is on the type's domain (or a subdomain, e.g. name.bandcamp.com). "other" accepts any host. */
+export function artistUrlMatchesType(type, url) {
+  const t = ARTIST_PAGE_TYPES.find((x) => x.id === type);
+  if (!t || !t.hosts) return !!hostOf(url);
+  const h = hostOf(url);
+  return t.hosts.some((d) => h === d || h.endsWith("." + d));
+}
+
 export const emptyItem = () => ({
   id: "i-" + Math.random().toString(36).slice(2, 9),
   kind: "track", title: "", artist: "", year: "", why: "",
   stage: "established", origin: "local", knowsArtist: false,
+  evidence: emptyEvidence(),
   linerNote: { text: "", sourceLabel: "", sourceUrl: "" },
 });
 
@@ -67,6 +90,16 @@ export function validateEdition(ed, { today, takenDates = [] }) {
     if (it.year && !/^\d{4}$/.test(String(it.year))) errs.push(`${p}: year should be four digits.`);
     if (isMusic(it) && it.origin === "other") errs.push(`${p}: Folio is scoped to Australian artists for now. Mark where they are from, or pick someone from here.`);
     if (it.stage === "emerging" && !isMusic(it)) errs.push(`${p}: only a track, album or artist can be marked new and upcoming.`);
+    if (it.stage === "emerging" && isMusic(it)) {
+      const ev = it.evidence || {};
+      if (!isHttpUrl(ev.artistUrl || "")) errs.push(`${p}: add the artist's own page (SoundCloud, Bandcamp or other) as a link.`);
+      else if (!artistUrlMatchesType(ev.artistType, ev.artistUrl)) errs.push(`${p}: that link is not on ${ARTIST_PAGE_TYPES.find((x) => x.id === ev.artistType)?.label || "the chosen site"}. Change the page type or the link.`);
+      if (!isHttpUrl(ev.thirdUrl || "") || !(ev.thirdLabel || "").trim()) errs.push(`${p}: add an independent source (radio, venue, press or QMusic) with a name and link.`);
+      else if (hostOf(ev.thirdUrl) === hostOf(ev.artistUrl)) errs.push(`${p}: the independent source must be on a different site from the artist's own page.`);
+      if ((ev.localNote || "").trim().length < 20) errs.push(`${p}: say how you know the artist is local (profile location, a gig, a venue).`);
+      if (it.origin !== "local") errs.push(`${p}: a new and upcoming pick must be based in the city.`);
+      if (!ev.attested) errs.push(`${p}: tick the box to confirm this is human-made, local and new.`);
+    }
     const ln = it.linerNote || {};
     if ((ln.text || "").trim().length < 20) errs.push(`${p}: the liner note needs a real fact.`);
     if (!isHttpUrl(ln.sourceUrl || "")) errs.push(`${p}: the liner note needs a source link (http or https).`);

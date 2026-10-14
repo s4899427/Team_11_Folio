@@ -6,7 +6,7 @@ import { listEditions, saveEdition, listPitches, addGigTip, getCuratorStats, sav
 import { CITIES } from "@/lib/cities";
 import { tierFor, discoveryRate, TIERS, MIN_RESPONSES_TO_SHOW } from "@/lib/standing";
 import { cityToday, addDays, formatLong, formatShort } from "@/lib/time";
-import { validateEdition, emptyItem, MAX_ITEMS, MAX_DAYS_AHEAD } from "@/lib/validate";
+import { validateEdition, emptyItem, emptyEvidence, ARTIST_PAGE_TYPES, MAX_ITEMS, MAX_DAYS_AHEAD } from "@/lib/validate";
 import { useFolio } from "@/lib/folio-store";
 import EditionView from "@/components/folio/EditionView";
 
@@ -37,6 +37,7 @@ export default function Studio() {
   const dateOptions = Array.from({ length: MAX_DAYS_AHEAD + 1 }, (_, i) => addDays(today, i));
 
   const setItem = (i, patch) => setEd((x) => ({ ...x, items: x.items.map((it, n) => (n === i ? { ...it, ...patch } : it)) }));
+  const setEv = (i, patch) => setEd((x) => ({ ...x, items: x.items.map((it, n) => (n === i ? { ...it, evidence: { ...emptyEvidence(), ...it.evidence, ...patch } } : it)) }));
   const setLiner = (i, patch) => setEd((x) => ({ ...x, items: x.items.map((it, n) => (n === i ? { ...it, linerNote: { ...it.linerNote, ...patch } } : it)) }));
 
   const publish = async () => {
@@ -105,9 +106,26 @@ export default function Studio() {
                   <option value="other">Outside {pubCity.country}</option>
                 </select>
                 {it.stage === "emerging" && (
-                  <label className="col-span-2 flex items-center gap-2 text-xs text-folio-cream-dim">
-                    <input type="checkbox" checked={!!it.knowsArtist} onChange={(e) => setItem(i, { knowsArtist: e.target.checked })} /> I know this artist personally (shown to readers)
-                  </label>
+                  <div className="col-span-2 space-y-2 border border-folio-saffron/40 bg-folio-saffron/5 p-3" data-testid={`evidence-${i}`}>
+                    <p className="folio-eyebrow text-folio-saffron">Two sources for a new artist</p>
+                    <div className="grid grid-cols-3 gap-2">
+                      <select value={(it.evidence || {}).artistType || "soundcloud"} onChange={(e) => setEv(i, { artistType: e.target.value })} aria-label={`Pick ${i + 1} artist page type`} className={field + " bg-folio-ink"}>
+                        {ARTIST_PAGE_TYPES.map((t) => <option key={t.id} value={t.id}>{t.label}</option>)}
+                      </select>
+                      <input value={(it.evidence || {}).artistUrl || ""} onChange={(e) => setEv(i, { artistUrl: e.target.value })} placeholder="1. Artist's own page link" aria-label={`Pick ${i + 1} artist page link`} className={field + " col-span-2"} />
+                    </div>
+                    <div className="grid grid-cols-3 gap-2">
+                      <input value={(it.evidence || {}).thirdLabel || ""} onChange={(e) => setEv(i, { thirdLabel: e.target.value })} placeholder="2. Independent source name" aria-label={`Pick ${i + 1} independent source name`} className={field} />
+                      <input value={(it.evidence || {}).thirdUrl || ""} onChange={(e) => setEv(i, { thirdUrl: e.target.value })} placeholder="Radio, venue, press or QMusic link" aria-label={`Pick ${i + 1} independent source link`} className={field + " col-span-2"} />
+                    </div>
+                    <input value={(it.evidence || {}).localNote || ""} onChange={(e) => setEv(i, { localNote: e.target.value })} maxLength={160} placeholder={`How do you know they're based in ${pubCity.name}?`} aria-label={`Pick ${i + 1} local note`} className={field} />
+                    <label className="flex items-start gap-2 text-xs text-folio-cream-dim">
+                      <input type="checkbox" className="mt-0.5" checked={!!(it.evidence || {}).attested} onChange={(e) => setEv(i, { attested: e.target.checked })} aria-label={`Pick ${i + 1} attestation`} /> I confirm this is human-made, local and new. I am accountable for this pick.
+                    </label>
+                    <label className="flex items-center gap-2 text-xs text-folio-cream-dim">
+                      <input type="checkbox" checked={!!it.knowsArtist} onChange={(e) => setItem(i, { knowsArtist: e.target.checked })} /> I know this artist personally (shown to readers)
+                    </label>
+                  </div>
                 )}
               </div>
             )}

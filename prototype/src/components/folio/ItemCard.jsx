@@ -35,6 +35,13 @@ export default function ItemCard({ item, index, editionDate }) {
               {item.stage === "emerging" && item.knowsArtist && <span className="folio-eyebrow px-1.5 py-0.5 border border-border text-folio-cream-dim">Curator knows them</span>}
             </p>
           )}
+          {item.stage === "emerging" && item.evidence?.localNote && (
+            <p className="mt-2 text-xs text-folio-cream-dim" data-testid="item-evidence">
+              <span className="folio-eyebrow text-folio-saffron mr-1.5">Local</span>{item.evidence.localNote}{" "}
+              {item.evidence.artistUrl && <a href={item.evidence.artistUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-folio-cream">Artist's page</a>}
+              {item.evidence.thirdUrl && <> · <a href={item.evidence.thirdUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-folio-cream">{item.evidence.thirdLabel || "Second source"}</a></>}
+            </p>
+          )}
         </div>
         <button
           onClick={() => toggleSaved({ id: item.id, title: item.title, artist: item.artist, editionDate })}
