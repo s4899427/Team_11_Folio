@@ -1,73 +1,28 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { ExternalLink, X } from "lucide-react";
 import Wordmark from "@/components/folio/Wordmark";
 import LocalGreeting, { CountryAck } from "@/components/folio/LocalGreeting";
 import { FactSource } from "@/components/folio/DidYouKnow";
 import { useFolio } from "@/lib/folio-store";
 import { CITY_LIST, CITIES, detectCity, factOfTheDay } from "@/lib/cities";
-import { cityToday } from "@/lib/time";
+import { cityToday, formatLong } from "@/lib/time";
 import { cn } from "@/lib/utils";
 
-const stories = (city) => [
-  {
-    id: "reader", tag: "The reader", who: "Example: Mei, new to " + city.name,
-    line: "Just moved here. Loves music, knows none of the local names.",
-    steps: [
-      ["Morning", `Opens Folio. ${city.name}'s Edition is waiting, with the curator's name on top.`],
-      ["Picks", "Eight to twelve picks. Each says why it is here, and the liner note says why locals know it."],
-      ["Out", "Browse shows a gig this week. A \"Did you know?\" gives her something to say at the venue."],
-      ["Back", "She answers one question: did this show you something new? If yes, she can back the curator."],
-    ],
-  },
-  {
-    id: "path", tag: "The way to curating", who: "Example: Sam, a regular reader",
-    line: "Knows the scene better than the Edition did. Wants a turn.",
-    steps: [
-      ["Notice", "Sam has been backing curators and answering the Discovery check for a few weeks."],
-      ["Apply", "Sam applies from Me, with a short pitch and links to music they would feature."],
-      ["Apprentice", "The Folio team approves. First Editions are marked Apprentice."],
-      ["Earn it", "Curator at 5 Editions. Resident when readers keep finding something new and enough different people back them."],
-    ],
-  },
-  {
-    id: "curator", tag: "The curator's journey", who: "Example: Jo, a curator",
-    line: "One day each. Eight to twelve picks. Every fact has a source.",
-    steps: [
-      ["Claim a day", `One Edition per city per day. It locks at midnight ${city.name} time.`],
-      ["Mix it", "Mostly artists people already know, plus one or two new and upcoming local artists. Say if you know them."],
-      ["Source it", "Each liner note needs a checkable fact and a link. No source, no publish."],
-      ["Learn", "Jo sees how many readers found something new, and who backed the Edition, never a ranking of songs."],
-    ],
-  },
+/**
+ * The introduction: a short, front-page style story told one part at a time.
+ * Tap the right side (or Next) to go forward, the left side to go back, or swipe.
+ * It ends on Today. It is also the replay: tapping the Folio logo anywhere opens it again.
+ * Copy is written like a newspaper kicker and headline, not a settings screen.
+ */
+const slidesFor = (city) => [
+  { id: "cover", kicker: `The ${city.name} Edition`, head: "Your city's front page, in music.", body: "One Edition a day. Picked by a named local. Gone at midnight." },
+  { id: "name", kicker: "No. 1 · Someone accountable", head: "A name stands behind every song.", body: "A local curator picks 8 to 12 tracks and prints the reason next to each one. No algorithm. No likes. No ranking." },
+  { id: "new", kicker: "No. 2 · Something new", head: "Meet the artists you haven't heard yet.", body: "Two to four picks are new local acts, set beside names you may already know. The curator backs each newcomer with two sources." },
+  { id: "go", kicker: "No. 3 · Something to do", head: "Then take it out.", body: "Gigs near you, and one fact worth saying out loud when you get there." },
+  ...(city.country_ack ? [{ id: "country", kicker: "On Country" }] : []),
+  { id: "city", kicker: "Last thing" },
 ];
-
-function StoryCards({ city }) {
-  const [n, setN] = useState(0);
-  const list = stories(city);
-  const onScroll = (e) => { const el = e.currentTarget; setN(Math.round(el.scrollLeft / (el.clientWidth * 0.86))); };
-  return (
-    <div className="mt-6" data-testid="story-cards">
-      <div onScroll={onScroll} className="flex gap-3 overflow-x-auto snap-x snap-mandatory -mx-5 px-5 pb-2" style={{ scrollbarWidth: "none" }}>
-        {list.map((c) => (
-          <article key={c.id} data-testid={`story-${c.id}`} className="snap-center shrink-0 w-[86%] border border-border p-4 bg-folio-ink">
-            <span className="folio-eyebrow text-folio-saffron">{c.tag}</span>
-            <p className="folio-serif text-xl text-folio-cream leading-snug mt-2">{c.line}</p>
-            <p className="text-xs text-folio-cream-dim/80 mt-1">{c.who} (made-up scenario, not a real user)</p>
-            <ol className="mt-4 space-y-3">
-              {c.steps.map(([h, t]) => (
-                <li key={h} className="grid grid-cols-[4.5rem_1fr] gap-3">
-                  <span className="folio-eyebrow text-folio-cream-dim pt-0.5">{h}</span>
-                  <span className="text-sm text-folio-cream leading-relaxed">{t}</span>
-                </li>
-              ))}
-            </ol>
-          </article>
-        ))}
-      </div>
-      <div className="flex gap-1.5 mt-2" aria-hidden>{list.map((c, k) => <span key={c.id} className={`h-1 w-4 ${k === n ? "bg-folio-saffron" : "bg-border"}`} />)}</div>
-    </div>
-  );
-}
 
 export default function Welcome() {
   const { setSeenIntro, setCityId } = useFolio();
@@ -76,39 +31,84 @@ export default function Welcome() {
   const [i, setI] = useState(0);
   const [picked, setPicked] = useState(guess);          // null until chosen when we couldn't guess
   const city = picked ? CITIES[picked] : null;
+  const ctx = city || CITIES.brisbane;                  // story context while no city is chosen
+  const slides = slidesFor(ctx);
+  const idx = Math.min(i, slides.length - 1);          // the story can shrink when the chosen city has no Country slide
+  const last = idx === slides.length - 1;
+  const slide = slides[idx];
   const fact = city ? factOfTheDay(city, cityToday(city.tz)) : null;
+  const touch = useRef(null);
 
-  const next = () => {
-    if (i === 1 && picked) setCityId(picked);
-    if (i < 2) return setI(i + 1);
+  const finish = () => {
+    if (picked) setCityId(picked);
     setSeenIntro();
     navigate("/", { replace: true });
   };
-  const disabled = i === 1 && !picked;
+  const blocked = last && !picked;
+  const next = () => { if (blocked) return; if (last) return finish(); setI(Math.min(idx + 1, slides.length - 1)); };
+  const prev = () => setI(Math.max(idx - 1, 0));
+
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === "ArrowRight") next(); if (e.key === "ArrowLeft") prev(); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  });
+
+  const onTouchStart = (e) => { const t = e.touches[0]; touch.current = { x: t.clientX, y: t.clientY }; };
+  const onTouchEnd = (e) => {
+    if (!touch.current) return;
+    const t = e.changedTouches[0]; const dx = t.clientX - touch.current.x; const dy = t.clientY - touch.current.y;
+    touch.current = null;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) (dx < 0 ? next : prev)();
+  };
+  const interactive = slide.id === "city";               // the city step has buttons, so no tap zones there
 
   return (
-    <div className="min-h-screen flex flex-col px-5 py-10 max-w-lg mx-auto" data-testid={`welcome-${i}`}>
-      <Wordmark className="text-base" />
+    <div className="min-h-screen flex flex-col px-5 pt-5 pb-8 max-w-lg mx-auto relative select-none" data-testid={`welcome-${idx}`} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+      <div className="flex gap-1.5" role="progressbar" aria-valuemin={1} aria-valuemax={slides.length} aria-valuenow={idx + 1} aria-label="Introduction progress">
+        {slides.map((s, k) => <span key={s.id} className={cn("h-0.5 flex-1 transition-colors", k <= idx ? "bg-folio-saffron" : "bg-border")} />)}
+      </div>
+      <div className="flex items-center justify-between mt-4">
+        <Wordmark className="text-base" />
+        <button onClick={finish} disabled={!picked} data-testid="welcome-skip" aria-label="Skip the introduction" className="p-2 -m-2 text-folio-cream-dim hover:text-folio-cream disabled:opacity-30">
+          <X className="w-5 h-5" strokeWidth={1.5} />
+        </button>
+      </div>
 
-      <div key={i} className="flex-1 flex flex-col justify-center py-8 animate-fade-up">
-        {i === 0 && (
+      {!interactive && (
+        <>
+          <button onClick={prev} aria-label="Previous" tabIndex={-1} className="absolute left-0 top-28 bottom-28 w-1/3 z-10 cursor-w-resize" />
+          <button onClick={next} aria-label="Next" tabIndex={-1} className="absolute right-0 top-28 bottom-28 w-2/3 z-10 cursor-e-resize" />
+        </>
+      )}
+
+      <div key={slide.id} className="flex-1 flex flex-col justify-center py-8 animate-fade-up">
+        {slide.id !== "city" && slide.id !== "country" && (
           <>
-            <span className="folio-eyebrow text-folio-saffron">Welcome to Folio</span>
-            <h1 className="folio-serif text-5xl leading-[1.05] text-folio-cream mt-4">One music Edition a day, for your city.</h1>
-            <p className="text-folio-cream-dim mt-5 leading-relaxed">A named local curator picks 8 to 12 tracks and says why each one is there. It is a short read, then you are done. A new Edition arrives at midnight.</p>
-            <ul className="mt-6 space-y-3" data-testid="why-today">
-              {[
-                ["Something new", "Two to four of today's picks are new local artists, next to ones you may know."],
-                ["Someone accountable", "A person with a name chose it. No algorithm, no likes, no ranking."],
-                ["Something to do", "Gigs nearby, and a fact to bring up when you get there."],
-              ].map(([h, t]) => (
-                <li key={h} className="grid grid-cols-[7.5rem_1fr] gap-3"><span className="folio-eyebrow text-folio-saffron pt-0.5">{h}</span><span className="text-sm text-folio-cream leading-relaxed">{t}</span></li>
-              ))}
-            </ul>
+            {slide.id === "cover" && <p className="folio-eyebrow text-folio-cream-dim border-t border-b border-border py-2 mb-6 text-center">{formatLong(cityToday(ctx.tz))}</p>}
+            <span className="folio-eyebrow text-folio-saffron">{slide.kicker}</span>
+            <h1 className="folio-serif text-5xl leading-[1.04] text-folio-cream mt-4">{slide.head}</h1>
+            <p data-testid={slide.id === "cover" ? "why-today" : undefined} className="text-lg text-folio-cream-dim mt-6 leading-relaxed">{slide.body}</p>
           </>
         )}
 
-        {i === 1 && (
+        {slide.id === "country" && (
+          <div data-testid="welcome-country">
+            <span className="folio-eyebrow text-folio-saffron">{slide.kicker}</span>
+            <h1 className="folio-serif text-5xl leading-[1.04] text-folio-cream mt-4">You're on {ctx.country_ack.placeName}.</h1>
+            <p className="text-lg text-folio-cream-dim mt-6 leading-relaxed">
+              {ctx.country_ack.placeName} is said to mean “{ctx.country_ack.meaning}”. It is a Traditional Place name from Turrbal and Yuggera Country, and music has been made here for far longer than there has been a city.
+            </p>
+            {ctx.country_ack.meaningSource && (
+              <a href={ctx.country_ack.meaningSource.url} target="_blank" rel="noreferrer" className="relative z-20 inline-flex items-center gap-1 text-xs text-folio-saffron mt-3 hover:underline">
+                Source: {ctx.country_ack.meaningSource.label} <ExternalLink className="w-3 h-3" />
+              </a>
+            )}
+            <div className="mt-6"><CountryAck city={ctx} /></div>
+          </div>
+        )}
+
+        {slide.id === "city" && (
           <>
             {city ? (
               <>
@@ -128,7 +128,6 @@ export default function Welcome() {
                 <p className="text-folio-cream-dim mt-4 leading-relaxed">We couldn't tell from your device. Pick the nearest city we cover.</p>
               </>
             )}
-
             <div className="mt-6">
               <p className="folio-eyebrow text-folio-cream-dim">{guess && picked === guess ? "We guessed from your device's time zone. Not right?" : "Your city"}</p>
               <div className="flex flex-wrap gap-2 mt-2">
@@ -141,24 +140,14 @@ export default function Welcome() {
               </div>
               <p className="text-xs text-folio-cream-dim/70 mt-3">This guess uses only your device's time zone. Nothing about your location is sent anywhere.</p>
             </div>
-            {city && <div className="mt-6"><CountryAck city={city} /></div>}
-          </>
-        )}
-
-        {i === 2 && (
-          <>
-            <span className="folio-eyebrow text-folio-saffron">Three ways in</span>
-            <h1 className="folio-serif text-4xl leading-tight text-folio-cream mt-4">One Edition. No algorithm.</h1>
-            <p className="text-sm text-folio-cream-dim mt-3 leading-relaxed">A person picks. Nothing is ranked. It locks at {(city || CITIES.brisbane).name} midnight. Swipe through three example stories.</p>
-            <StoryCards city={city || CITIES.brisbane} />
           </>
         )}
       </div>
 
-      <div className="flex items-center justify-between">
-        <div className="flex gap-2">{[0, 1, 2].map((n) => <span key={n} className={`h-1 w-6 ${n === i ? "bg-folio-saffron" : "bg-border"}`} />)}</div>
-        <button onClick={next} disabled={disabled} data-testid="welcome-next" className="px-6 py-3 bg-folio-cream text-folio-ink folio-eyebrow disabled:opacity-40">
-          {i === 2 ? `Read ${city ? city.name + "'s" : "today's"} Edition` : "Next"}
+      <div className="flex items-center justify-between relative z-20">
+        <button onClick={prev} disabled={idx === 0} data-testid="welcome-back" className="folio-eyebrow text-folio-cream-dim disabled:opacity-0 px-2 py-3 -ml-2">Back</button>
+        <button onClick={next} disabled={blocked} data-testid="welcome-next" className="px-6 py-3 bg-folio-cream text-folio-ink folio-eyebrow disabled:opacity-40">
+          {last ? `Read ${city ? city.name + "'s" : "today's"} Edition` : "Next"}
         </button>
       </div>
     </div>

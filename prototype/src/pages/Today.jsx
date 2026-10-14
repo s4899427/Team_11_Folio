@@ -66,7 +66,7 @@ export default function Today() {
   return (
     <div className="max-w-lg mx-auto px-5 pt-8">
       <div className="flex items-center justify-between animate-fade-in">
-        <Wordmark />
+        <Wordmark to="/welcome" />
         <div className="flex items-center gap-4">
           <CityPicker />
           <span className="text-xs text-folio-cream-dim hidden min-[380px]:inline">{formatLong(today)}</span>

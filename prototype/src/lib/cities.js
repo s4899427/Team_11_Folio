@@ -29,6 +29,8 @@ export const CITIES = {
     scene: "From the 1970s punk of The Saints to today's Valley venues, Brisbane's music has always been made in small rooms.",
     country_ack: {
       placeName: "Meanjin",
+      meaning: "the spearhead",
+      meaningSource: { label: "Australia Post, Traditional Place names (quoting Uncle Shannon Ruska)", url: "https://auspost.com.au/community-hub/traditional-place-names/meanjin-exploring-traditional-place-name-of-brisbane" },
       text: "Folio acknowledges the Traditional Custodians of the land where Brisbane stands, including the Turrbal and Yuggera/Jagera peoples, and pays respect to Elders past and present. Meanjin is a Traditional Place name for the Brisbane area.",
     },
     venues: [

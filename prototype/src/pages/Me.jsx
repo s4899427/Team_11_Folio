@@ -158,7 +158,7 @@ export default function Me() {
   if (!session) {
     return (
       <div className="max-w-lg mx-auto px-5 pt-8">
-        <Wordmark />
+        <Wordmark to="/welcome" />
         <h1 className="folio-serif text-4xl text-folio-cream mt-8">You're browsing as a guest.</h1>
         <p className="text-sm text-folio-cream-dim mt-3 leading-relaxed">Reading is open to everyone. An account lets you comment, save picks privately, and (if you make music) pitch to curators.</p>
         <div className="mt-8 space-y-3">

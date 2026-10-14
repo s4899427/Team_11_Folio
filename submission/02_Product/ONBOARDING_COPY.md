@@ -49,3 +49,14 @@ Claude helped draft the shortened copy and the implementation prompt, from a bri
 ## Appendix: the implementation prompt (single Base44 edit)
 
 See the prompt in the project chat. It tells Base44 to edit the existing onboarding text in place, change nothing else, and stop.
+
+
+## Update 15 Oct: the story intro (current copy)
+Shown part by part. Tap the right side or Next to go on, the left side or Back to return, or swipe. It ends on Today. Tapping the Folio logo (Today, Me) replays it.
+1. **The {City} Edition.** "Your city's front page, in music." One Edition a day. Picked by a named local. Gone at midnight.
+2. **No. 1 · Someone accountable.** "A name stands behind every song." A local curator picks 8 to 12 tracks and prints the reason next to each one. No algorithm. No likes. No ranking.
+3. **No. 2 · Something new.** "Meet the artists you haven't heard yet." Two to four picks are new local acts, set beside names you may already know. The curator backs each newcomer with two sources.
+4. **No. 3 · Something to do.** "Then take it out." Gigs near you, and one fact worth saying out loud when you get there.
+5. **On Country (Brisbane only).** "You're on Meanjin." Said to mean "the spearhead" (Australia Post, Traditional Place names, quoting Uncle Shannon Ruska), plus the Acknowledgement of Country. **[REVIEW]** The Acknowledgement wording is still a draft: have it checked by an appropriate Aboriginal or Torres Strait Islander person before the tradeshow. No artwork is used: artwork needs permission and credit from an artist or community.
+6. **Last thing.** City greeting, a sourced "Did you know?", and the city picker. Button: "Read {City}'s Edition".
+Test: `07_Engineering/e2e/intro.py`.
