@@ -26,7 +26,7 @@ with sync_playwright() as pw:
     for name in ("F1-1b-accountable","F1-1c-new","F1-1d-go"):
         p.get_by_test_id("welcome-next").click(); p.wait_for_timeout(350); shot(p,name)
     p.get_by_test_id("welcome-next").click(); p.wait_for_timeout(350); shot(p,"F1-3-country")
-    check(F,"Brisbane story has an On Country part naming Meanjin with its source", p.get_by_test_id("welcome-country").count()==1 and "Meanjin" in p.get_by_test_id("welcome-country").inner_text() and p.locator('[data-testid="welcome-country"] a').count()==1)
+    check(F,"Brisbane story has a sourced Did-you-know about First Nations songs and the Acknowledgement of Country", p.get_by_test_id("welcome-country").count()==1 and "songs" in p.get_by_test_id("welcome-country-fact").inner_text().lower() and p.locator('[data-testid="welcome-country"] a').count()==1 and p.get_by_test_id("country-ack").count()==1)
     p.get_by_test_id("welcome-next").click(); p.wait_for_timeout(350); shot(p,"F1-2-city")
     check(F,"City step shows Brisbane live", p.get_by_test_id("pick-brisbane").count()==1)
     if p.get_by_test_id("welcome-next").is_disabled(): p.get_by_test_id("pick-brisbane").click()

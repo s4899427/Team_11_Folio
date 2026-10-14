@@ -53,10 +53,10 @@ See the prompt in the project chat. It tells Base44 to edit the existing onboard
 
 ## Update 15 Oct: the story intro (current copy)
 Shown part by part. Tap the right side or Next to go on, the left side or Back to return, or swipe. It ends on Today. Tapping the Folio logo (Today, Me) replays it.
-1. **The {City} Edition.** "Your city's front page, in music." One Edition a day. Picked by a named local. Gone at midnight.
-2. **No. 1 · Someone accountable.** "A name stands behind every song." A local curator picks 8 to 12 tracks and prints the reason next to each one. No algorithm. No likes. No ranking.
-3. **No. 2 · Something new.** "Meet the artists you haven't heard yet." Two to four picks are new local acts, set beside names you may already know. The curator backs each newcomer with two sources.
-4. **No. 3 · Something to do.** "Then take it out." Gigs near you, and one fact worth saying out loud when you get there.
-5. **On Country (Brisbane only).** "You're on Meanjin." Said to mean "the spearhead" (Australia Post, Traditional Place names, quoting Uncle Shannon Ruska), plus the Acknowledgement of Country. **[REVIEW]** The Acknowledgement wording is still a draft: have it checked by an appropriate Aboriginal or Torres Strait Islander person before the tradeshow. No artwork is used: artwork needs permission and credit from an artist or community.
-6. **Last thing.** City greeting, a sourced "Did you know?", and the city picker. Button: "Read {City}'s Edition".
+1. **The {City} Edition.** "Your city's front page, for music." One Edition a day. Picked by a named local. Gone at midnight.
+2. **Someone accountable.** "Every story starts somewhere." Here, it starts with a person: a named local curator who picks 8 to 12 tracks and prints the reason beside each one. No algorithm. No likes. No ranking.
+3. **Something new.** "Hear what you've never heard. Learn what you never knew." New local artists sit beside the names you know, and every pick carries one fact you can check.
+4. **Something to do.** "Then go get lost in the music." Gigs near you, and one fact worth saying out loud when you get there.
+5. **Did you know? (Brisbane)**, with the Acknowledgement of Country. The fact is from AIATSIS (Songs of Australia): songs carry history, family connections, knowledge of the natural world and medicine. It is a national fact and says so on screen. **[REVIEW]** I could not verify a Brisbane-specific fact about Aboriginal music, so none is claimed; the code has a TODO to add one from a Turrbal or Yuggera/Jagera body or the State Library of Queensland. The Acknowledgement wording is still a draft: have an appropriate Aboriginal or Torres Strait Islander person check it before the tradeshow. No artwork is used: artwork needs permission and credit.
+6. **Last thing.** City greeting, a different sourced "Did you know?", and the city picker. Button: "Read {City}'s Edition".
 Test: `07_Engineering/e2e/intro.py`.

@@ -16,11 +16,11 @@ import { cn } from "@/lib/utils";
  * Copy is written like a newspaper kicker and headline, not a settings screen.
  */
 const slidesFor = (city) => [
-  { id: "cover", kicker: `The ${city.name} Edition`, head: "Your city's front page, in music.", body: "One Edition a day. Picked by a named local. Gone at midnight." },
-  { id: "name", kicker: "No. 1 · Someone accountable", head: "A name stands behind every song.", body: "A local curator picks 8 to 12 tracks and prints the reason next to each one. No algorithm. No likes. No ranking." },
-  { id: "new", kicker: "No. 2 · Something new", head: "Meet the artists you haven't heard yet.", body: "Two to four picks are new local acts, set beside names you may already know. The curator backs each newcomer with two sources." },
-  { id: "go", kicker: "No. 3 · Something to do", head: "Then take it out.", body: "Gigs near you, and one fact worth saying out loud when you get there." },
-  ...(city.country_ack ? [{ id: "country", kicker: "On Country" }] : []),
+  { id: "cover", kicker: `The ${city.name} Edition`, head: "Your city's front page, for music.", body: "One Edition a day. Picked by a named local. Gone at midnight." },
+  { id: "name", kicker: "Someone accountable", head: "Every story starts somewhere.", body: "Here, it starts with a person: a named local curator who picks 8 to 12 tracks and prints the reason beside each one. No algorithm. No likes. No ranking." },
+  { id: "new", kicker: "Something new", head: "Hear what you've never heard. Learn what you never knew.", body: "New local artists sit beside the names you know, and every pick carries one fact you can check. Pull the thread on a song you thought you knew." },
+  { id: "go", kicker: "Something to do", head: "Then go get lost in the music.", body: "Gigs near you, and one fact worth saying out loud when you get there." },
+  ...(city.country_ack ? [{ id: "country", kicker: "Did you know?" }] : []),
   { id: "city", kicker: "Last thing" },
 ];
 
@@ -36,7 +36,7 @@ export default function Welcome() {
   const idx = Math.min(i, slides.length - 1);          // the story can shrink when the chosen city has no Country slide
   const last = idx === slides.length - 1;
   const slide = slides[idx];
-  const fact = city ? factOfTheDay(city, cityToday(city.tz)) : null;
+  const fact = city ? factOfTheDay({ ...city, facts: city.facts.filter((f) => f.id !== "au-songs") }, cityToday(city.tz)) : null;  // the Country part already used au-songs
   const touch = useRef(null);
 
   const finish = () => {
@@ -95,16 +95,16 @@ export default function Welcome() {
         {slide.id === "country" && (
           <div data-testid="welcome-country">
             <span className="folio-eyebrow text-folio-saffron">{slide.kicker}</span>
-            <h1 className="folio-serif text-5xl leading-[1.04] text-folio-cream mt-4">You're on {ctx.country_ack.placeName}.</h1>
-            <p className="text-lg text-folio-cream-dim mt-6 leading-relaxed">
-              {ctx.country_ack.placeName} is said to mean “{ctx.country_ack.meaning}”. It is a Traditional Place name from Turrbal and Yuggera Country, and music has been made here for far longer than there has been a city.
-            </p>
-            {ctx.country_ack.meaningSource && (
-              <a href={ctx.country_ack.meaningSource.url} target="_blank" rel="noreferrer" className="relative z-20 inline-flex items-center gap-1 text-xs text-folio-saffron mt-3 hover:underline">
-                Source: {ctx.country_ack.meaningSource.label} <ExternalLink className="w-3 h-3" />
-              </a>
-            )}
-            <div className="mt-6"><CountryAck city={ctx} /></div>
+            {(() => { const f = ctx.facts.find((x) => x.id === "au-songs"); return f ? (
+              <>
+                <h1 className="folio-serif text-3xl leading-[1.15] text-folio-cream mt-4" data-testid="welcome-country-fact">{f.text}</h1>
+                {f.note && <p className="text-xs text-folio-cream-dim/80 mt-3">{f.note}</p>}
+                <a href={f.sourceUrl} target="_blank" rel="noreferrer" className="relative z-20 inline-flex items-center gap-1 text-xs text-folio-saffron mt-3 hover:underline">
+                  Source: {f.sourceLabel} <ExternalLink className="w-3 h-3" />
+                </a>
+              </>
+            ) : null; })()}
+            <div className="mt-8"><CountryAck city={ctx} /></div>
           </div>
         )}
 
