@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Tests the database rules (schema.sql) on a throwaway local Postgres.
 # Needs a Postgres with the schema loaded and a stand-in for Supabase's auth schema
-# (auth.users + auth.uid() reading request.jwt.claim.sub). See docs/SUPABASE_SETUP.md.
+# (auth.users + auth.uid() reading request.jwt.claim.sub). See submission/07_Engineering/SUPABASE_SETUP.md.
 # Usage: PGHOST=... PGPORT=... PGUSER=postgres ./rls_test.sh
 set -u
 P="psql -X -q -At -v ON_ERROR_STOP=1"
@@ -46,7 +46,7 @@ expect_ok   "curator publishes for today in own city"            authenticated $
 expect_fail "listener cannot publish"                            authenticated $A "$(ins brisbane "public.city_today('brisbane')+2" "$items5" $A)"
 expect_fail "curator cannot publish for another city"            authenticated $C "$(ins seoul "public.city_today('brisbane')+2" "$items5" $C)"
 expect_fail "curator cannot publish in the past"                 authenticated $C "$(ins brisbane "public.city_today('brisbane')-1" "$items5" $C)"
-expect_fail "4 picks rejected (need 5 to 7)"                     authenticated $C "$(ins brisbane "public.city_today('brisbane')+3" "$items4" $C)"
+expect_fail "4 picks rejected (need 5 to 12)"                     authenticated $C "$(ins brisbane "public.city_today('brisbane')+3" "$items4" $C)"
 $P -c "update public.profiles set role='curator' where id='$E';"
 expect_fail "second curator cannot claim the same day"           authenticated $E "$(ins brisbane "public.city_today('brisbane')" "$items5" $E)"
 expect_fail "curator cannot publish as someone else"             authenticated $C "$(ins brisbane "public.city_today('brisbane')+4" "$items5" $E)"
