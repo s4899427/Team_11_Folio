@@ -68,7 +68,7 @@ export default function ItemCard({ item, index, editionDate }) {
 
       {item.linerNote && (
         <div className="mt-4 border-t border-border pt-3">
-          <button onClick={() => setOpen((o) => !o)} aria-expanded={open} data-testid="liner-toggle" className="w-full flex items-center justify-between text-left">
+          <button onClick={() => setOpen((o) => !o)} aria-expanded={open} data-testid="liner-toggle" className="w-full min-h-[44px] -my-2 flex items-center justify-between text-left">
             <span className="folio-eyebrow text-folio-cream">Liner note</span>
             <ChevronDown className={cn("w-4 h-4 text-folio-cream-dim transition-transform", open && "rotate-180")} />
           </button>

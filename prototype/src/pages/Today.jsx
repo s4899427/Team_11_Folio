@@ -61,6 +61,7 @@ export default function Today() {
   const jumps = [
     ...(edition ? [{ id: "curator", label: "Curator" }, { id: "picks", label: "Picks" }] : []),
     { id: "dyk", label: "Did you know?" },
+    ...(edition ? [{ id: "discussion", label: "Discussion" }] : []),
   ];
 
   return (

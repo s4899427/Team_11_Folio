@@ -24,7 +24,7 @@ export default function Comments({ editionId, locked }) {
   };
 
   return (
-    <section className="mt-12 border-t border-border pt-6" data-testid="comments">
+    <section id="discussion" className="mt-12 border-t border-border pt-6 scroll-mt-16" data-testid="comments">
       <span className="folio-eyebrow text-folio-cream-dim">Discussion</span>
       <p className="text-xs text-folio-cream-dim/70 mt-1">Oldest first. Comments don't change what anyone sees.</p>
       <ul className="mt-4 space-y-4">
@@ -44,7 +44,7 @@ export default function Comments({ editionId, locked }) {
           <button type="submit" disabled={!text.trim()} className="px-4 bg-folio-cream text-folio-ink folio-eyebrow disabled:opacity-40">Post</button>
         </form>
       ) : (
-        <p className="text-sm text-folio-cream-dim mt-4"><Link to="/login" className="text-folio-saffron hover:underline">Log in</Link> to join the discussion.</p>
+        <p className="text-sm text-folio-cream-dim mt-4"><Link to="/register" className="text-folio-saffron hover:underline">Join as a guest</Link> or <Link to="/login" className="text-folio-saffron hover:underline">log in</Link> to join the discussion.</p>
       )}
       {err && <p className="text-xs text-folio-burgundy mt-2">{err}</p>}
     </section>

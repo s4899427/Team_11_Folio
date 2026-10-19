@@ -29,7 +29,7 @@ export default function DidYouKnow() {
       <FactSource fact={fact} />
       {others.length > 0 && (
         <>
-          <button onClick={() => setMore((m) => !m)} aria-expanded={more} data-testid="dyk-more" className="block mt-4 text-xs text-folio-cream-dim hover:text-folio-cream">
+          <button onClick={() => setMore((m) => !m)} aria-expanded={more} data-testid="dyk-more" className="block mt-2 py-3 text-sm text-folio-cream-dim hover:text-folio-cream">
             {more ? "Hide" : `More from ${city.name} (${others.length})`}
           </button>
           {more && (
