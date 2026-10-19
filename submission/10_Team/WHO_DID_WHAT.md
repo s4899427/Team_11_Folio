@@ -4,7 +4,7 @@ Contributions are from the project record (the repo history, the task sheets and
 
 | Member | Main contributions | Evidence |
 |---|---|---|
-| Dylan Sali (team lead) | Product definition and decisions (Edition size, new-artist mix, roles and flows, curator governance); research synthesis and documentation; interviewed three participants; Supabase project and live testing; evaluation sessions; wiki pages | `submission/` folder; `docs/`; commits by s4899427; `04_Design_Process/DECISION_LOG.md`; `05_Research_Evaluation/` |
+| Dylan Sali (team lead) | Product definition and decisions (Edition size, new-artist mix, roles and flows, curator governance); research synthesis and documentation; interviewed three participants; Supabase project and live testing; evaluation sessions (P1, P2) and ethics workshop facilitation (20 Oct); wiki pages | `submission/` folder; `docs/`; commits by s4899427; `04_Design_Process/DECISION_LOG.md`; `05_Research_Evaluation/` |
 | Pranav | Content and audience research (one interview transcript); from 9 Oct, owner of deployment (GitHub Actions secrets, Supabase deploy), architecture and README, tradeshow kit and QR code | `07_Engineering/` docs; GitHub Actions runs; interview transcript in `docs/research/` |
 | Shaz (Mohammad Shahzad) | Earlier technical build of the prototype; interviewed three participants; from 9 Oct, audience research, poster, design, pitch and demo script | commits by MShahzebShahzad; `docs/research/`; poster file; `08_Pitch_Poster_Demo/` |
 
