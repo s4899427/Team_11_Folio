@@ -10,7 +10,7 @@ Status: **in progress.** P1 workshop done; Pranav answered in writing; Shaz and 
 | Pranav | Team member | Written answers to the six-question form, sent overnight |
 | Shaz | Team member | [invited; no response yet] |
 
-Date: Tue 20 Oct 2026 (just after midnight). Photo of notes: [attach].
+Date: Tue 20 Oct 2026 (early hours). Photo of notes: [attach].
 This was **not** the full six-step 60-minute workshop. It was a shortened version with one outside participant plus written answers. Say so on the wiki page.
 
 ## Stakeholders added

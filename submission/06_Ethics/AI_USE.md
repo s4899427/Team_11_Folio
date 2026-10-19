@@ -9,7 +9,8 @@ The course requires every use of AI to be referenced, a list of AI-supported sec
 | Documentation drafts (MVP brief, roles and flows, ethics, process overview, evaluation kit, task sheets) | Claude | Drafted from the team's research and decisions; edited by the team | Facts, decisions and evidence come from the team's research. Edited and checked by: **[DYLAN TO WRITE: name]** | **[DYLAN TO WRITE: link or paste]** |
 | City facts and local touches | Claude with web search | Drafted; every fact has a source link in `cities.js` | Verification by: **[DYLAN TO WRITE: name]**; Wikipedia-only items cross-checked against primary sources | **[DYLAN TO WRITE: paste]** |
 | Evaluation design | Claude | Draft protocol and questions | Sessions, notes, coding and analysis done by the team | **[DYLAN TO WRITE: paste]** |
-| Interviews and synthesis | **[DYLAN TO WRITE: none or name the tool]** | **[DYLAN TO WRITE: extent]** | Interviews, transcripts and judgement by team members | **[DYLAN TO WRITE: paste]** |
+| Evaluation and ethics workshop transcription (20 Oct 2026) | TurboScribe (machine transcription) | Audio recorded with participant consent, transcribed by the tool; transcripts kept privately, not in the repo; names kept out of written notes | Sessions, notes and judgement by team members | Not applicable (no prompts) |
+| Candidate new-artist brainstorming | Google AI Mode | Produced lists of Brisbane artists; several claims could not be verified and were rejected (Ruel, Ocean Grove; Myles Creamer unverified) | Each artist's own page, an independent source and listening, checked by the curator | **[DYLAN TO WRITE: paste the Google AI Mode prompts]** |
 | Poster, pitch, design files | **[DYLAN TO WRITE: none or name the tool]** | **[DYLAN TO WRITE: extent]** | **[DYLAN TO WRITE: what the team did]** | **[DYLAN TO WRITE: paste]** |
 
 ## How we kept AI use honest
