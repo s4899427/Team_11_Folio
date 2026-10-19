@@ -11,14 +11,15 @@ For the Week 12 studio (A2 portrait poster plus a 2 to 3 minute pitch; every mem
 
 **Why it is social and mobile (25 s).** "It's asynchronous but shares a place: a city. Awareness is limited on purpose: you can see who curated and whether others found something new, but there are no counts and no ranking, because visibility has a privacy cost. That's the trade-off we designed around."
 
-**What we learned (20 s).** "**[AFTER EVALUATION: one finding and one thing we changed because of it.]**"
+**What we learned (20 s).** "We tested with two people. Neither could comment: after the intro they were anonymous readers, and the only prompt was a link at the bottom of a long page. We have designed a Discussion shortcut and a guest link; it is planned, not built."
 
 **Close (10 s).** "Folio: one Edition, one city, one day. Try it. The QR code is on the poster."
 
 ## B. Demo checklist (the day before)
 - Phone charged; QR code opens the live site over mobile data (not wifi).
 - A fresh guest join works. A team account and a curator account are logged in on a second device.
-- Today's Edition exists (the Folio Desk fallback shows if no curator published).
+- Today's Edition is published. In live mode there is **no fallback**: if nothing is published, Today says "Today's Edition isn't published yet". Publish it in the Studio (Day dropdown = today) before 10:45am.
+- To comment: Me > Create account > "Just looking? Join as a guest". Reading needs no account.
 - A backup: screen recording of the five flows in case wifi fails.
 - Do not demo anything not built (gig queue, source-link AI check).
 
@@ -33,7 +34,7 @@ For the Week 12 studio (A2 portrait poster plus a 2 to 3 minute pitch; every mem
 "Real: accounts, roles, curator approval, publishing with rule checks, comments, Discovery check, Backs, pitches, connections, questions, and the midnight lock, on a shared database. Simulated or seeded: the founding Brisbane Editions, other cities (Coming soon), and Nearby events, which are curator-entered tips."
 
 **4. What did users tell you, and what did you change?**
-"**[AFTER EVALUATION: specific finding, who said it (code), what changed in the app.]**" If evaluation has not run when asked: "We have interview findings from round one and round two [cite]. We are running evaluation sessions this week; here is the plan." Do not invent results.
+"P1 chose a venue, Cloudland Ballroom, when asked which pick they would play, and read Browse as information about "the festival's happening in my current location". So Browse behaves like an events page and does not lead back to the music. We will link Browse venues to the picks; it is planned, not built." Say plainly: two sessions, one person each, not simultaneous. Do not invent results.
 
 **5. Which social and mobile concepts did you use?**
 "The 3C model and awareness, the time-space matrix, social presence and its tensions (visibility versus privacy, context versus distraction), the location design framework for structuring the experience, and the Locales-based heuristics for evaluation. The map is in the repo." Name one trade-off: "We gave up social proof, like counts and trending, to protect privacy and keep it calm."
@@ -48,7 +49,7 @@ For the Week 12 studio (A2 portrait poster plus a 2 to 3 minute pitch; every mem
 "The size is our judgement, not a tested result. The mix rule keeps local artists present without making the Edition all unknown names. Our evaluation question Q8 tests whether it felt right."
 
 **9. How did you handle ethics?**
-"Location is optional and never stored. Fan names are visible only to the artist they chose to connect with. Discovery totals never show who answered. Participants are coded, with consent. Our register lists every piece of data. We ran the Ethical Disclaimer canvas from the Ethics for Designers Toolkit as a team workshop **[AFTER WORKSHOP: date]** and used Winner and Akrich for the politics of our rules." Name the framework only once it is filled.
+"Location is optional and never stored. Fan names are visible only to the artist they chose to connect with. Discovery totals never show who answered. Participants are coded, with consent. Our register lists every piece of data. We ran the Ethical Disclaimer canvas from the Ethics for Designers Toolkit as a team workshop on 20 Oct 2026 in a shortened session (one outside participant plus written answers) and used Winner and Akrich for the politics of our rules."
 
 **10. Where did you use AI?**
 "Claude was used for coding assistance, drafting documents, evaluation design, test scripts and city-fact research; every use is referenced and the prompts are in the appendix. All design decisions, interviews and evaluation were done by the team."
