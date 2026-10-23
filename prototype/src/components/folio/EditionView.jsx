@@ -2,6 +2,9 @@ import ItemCard from "./ItemCard";
 import Comments from "./Comments";
 import Countdown from "./Countdown";
 import DiscoveryCheck from "./DiscoveryCheck";
+import ShareButton from "./ShareButton";
+import ReadingNow from "./ReadingNow";
+import { editionShareText } from "@/lib/live";
 import { formatLong } from "@/lib/time";
 import { composition } from "@/lib/validate";
 
@@ -17,6 +20,9 @@ export default function EditionView({ edition, locked, curatorCard, afterPicks, 
         <span className="folio-eyebrow text-folio-saffron">{locked ? "Archived Edition" : "Today's Edition"} · {formatLong(edition.date)}</span>
         <h1 className="folio-serif text-[2.5rem] leading-[1.05] text-folio-cream mt-3" data-testid="edition-title">{edition.title}</h1>
         {edition.blurb && <p className="text-sm text-folio-cream-dim mt-3 leading-relaxed">{edition.blurb}</p>}
+        {edition.id !== "preview" && (
+          <div className="mt-4"><ShareButton label="Share this Edition" title={edition.title} text={editionShareText(edition)} date={edition.date} /></div>
+        )}
         {!curatorCard && <p className="text-xs text-folio-cream-dim mt-4">Curated by <span className="text-folio-cream">{edition.curatorName}</span>{edition.seed ? " · founding Edition" : ""}</p>}
       </div>
 
@@ -26,6 +32,7 @@ export default function EditionView({ edition, locked, curatorCard, afterPicks, 
       {!locked && (
         <div className="mt-8 py-5 border-y border-border folio-textile"><Countdown /></div>
       )}
+      {!locked && edition.id !== "preview" && <ReadingNow editionId={edition.id} locked={locked} />}
 
       <div className="mt-10 space-y-12">
         {edition.items.map((it, i) => (<ItemCard key={it.id || i} item={it} index={i} editionDate={edition.date} />))}

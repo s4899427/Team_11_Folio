@@ -233,12 +233,14 @@ export async function saveEdition(session, edition) {
 // Comments are chronological. They carry no ranking weight and there are no likes.
 const LOCAL_COMMENTS = "folio_v2_local_comments";
 
-export async function listComments(editionId) {
+/** strict: on a failed shared read, throw instead of falling back to this device's local list.
+ *  The open page polls with strict on, so a network blip keeps the comments already on screen. */
+export async function listComments(editionId, { strict = false } = {}) {
   if (REMOTE && !String(editionId).startsWith("seed-")) {
     try {
       const rows = await rest(`comments?edition_id=eq.${editionId}&select=*&order=created_at.asc`);
       return rows.map((r) => ({ id: r.id, author: r.author_name, body: r.body, at: r.created_at }));
-    } catch { /* fall back to local */ }
+    } catch (e) { if (strict) throw e; /* otherwise fall back to local */ }
   }
   return read(LOCAL_COMMENTS, {})[editionId] || [];
 }
@@ -683,4 +685,12 @@ export async function answerQuestion(session, id, answer) {
     return;
   }
   write(LOCAL_Q, read(LOCAL_Q, []).map((q) => (q.id === id ? { ...q, answer: text } : q)));
+}
+
+// ───────────────────── PRESENCE ("reading now") ─────────────────────
+// Needs supabase/migrations/004_presence.sql. Anonymous: a random per-page-load id and an Edition id go in, a number comes out.
+export async function heartbeatReading(editionId, clientId) {
+  if (!REMOTE) return 0;
+  const n = await rest("rpc/heartbeat_reading", { method: "POST", body: { p_edition: editionId, p_client: clientId } });
+  return Number(n) || 0;
 }

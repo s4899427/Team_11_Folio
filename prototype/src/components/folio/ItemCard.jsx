@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Bookmark, ChevronDown, ExternalLink } from "lucide-react";
 import { listenLinks, findUrl } from "@/lib/seed";
 import { useFolio } from "@/lib/folio-store";
+import ShareButton from "./ShareButton";
+import { pickShareText } from "@/lib/live";
 import { cn } from "@/lib/utils";
 
 const KIND_LABEL = { track: "Track", album: "Album", artist: "Artist", place: "Place", story: "Story" };
@@ -63,6 +65,9 @@ export default function ItemCard({ item, index, editionDate }) {
           </>
         ) : (
           <LinkChip href={findUrl(item)}>Find out more</LinkChip>
+        )}
+        {editionDate && editionDate !== "preview" && (
+          <ShareButton label="Share" title={item.title} text={pickShareText(item)} date={editionDate} className="py-1.5 min-h-0" />
         )}
       </div>
 
