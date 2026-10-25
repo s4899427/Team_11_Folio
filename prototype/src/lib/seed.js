@@ -168,6 +168,82 @@ const MAP_ITEMS = [
   },
 ];
 
+const STARTS_ITEMS = [
+  {
+    id: "i-riverstage", kind: "place", title: "Riverstage", artist: "City Botanic Gardens", year: null,
+    why: "A big outdoor room beside the Brisbane River.",
+    linerNote: note(
+      "Riverstage sits beside the Brisbane River in the City Botanic Gardens at 59 Gardens Point Road, and Brisbane City Council gives its capacity as 9,000.",
+      "Brisbane City Council", "https://www.brisbane.qld.gov.au/facilities-recreation/arts-culture/riverstage"),
+  },
+  {
+    id: "i-bigsound", kind: "story", title: "BIGSOUND", artist: "QMusic, Fortitude Valley", year: null,
+    why: "Where new Australian acts get seen, held in Brisbane.",
+    linerNote: note(
+      "BIGSOUND is produced by QMusic in Fortitude Valley and marked its 21st birthday in 2022. Its organisers list Ball Park Music, The Jungle Giants and Violent Soho among artists who got their start there.",
+      "BIGSOUND (QMusic)", "https://www.bigsound.org.au/news/announcements/bigsound-2022-announce"),
+  },
+  {
+    id: "i-qpac", kind: "place", title: "Queensland Performing Arts Centre", artist: "South Bank", year: 1985,
+    why: "The state's main performing arts centre, in the Queensland Cultural Centre.",
+    linerNote: note(
+      "QPAC was officially opened on 20 April 1985 by His Royal Highness the Duke of Kent, at South Bank within the Queensland Cultural Centre.",
+      "QPAC", "https://www.qpac.com.au/about"),
+  },
+  {
+    id: "i-16lovers", kind: "album", title: "16 Lovers Lane", artist: "The Go-Betweens", year: 1988,
+    why: "A Brisbane band's 1988 album, recorded in a Sydney studio.",
+    linerNote: note(
+      "It was released on 19 August 1988, with Mushroom as its Australian label, and recorded at Studios 301 in Sydney.",
+      "Wikipedia (W)", "https://en.wikipedia.org/wiki/16_Lovers_Lane"),
+  },
+  {
+    id: "i-cubsport", kind: "artist", title: "Cub Sport", artist: "Cub Sport", year: 2018,
+    why: "A recent Brisbane story: an independent pop group recognised by the ARIAs.",
+    linerNote: note(
+      "The Brisbane independent pop group won the first-ever ARIA Emerging Artist Scholarship, announced on 5 April 2018. The prize was travel support from Virgin Australia for the band's 2018 world tour.",
+      "ARIA", "https://aria.com.au/charts/news/cub-sport-wins-aria-emerging-artist-scholarship-presented-by-virgin-australia"),
+  },
+];
+
+const SHELVES_ITEMS = [
+  {
+    id: "i-baroona", kind: "story", title: "The Go-Betweens at Baroona Hall", artist: "Paddington", year: 1978,
+    why: "An early photograph of two Brisbane songwriters on stage.",
+    linerNote: note(
+      "A photograph from the Paul O'Brien Collection shows Grant McLennan and Robert Forster performing as The Go-Betweens at Baroona Hall, Caxton Street, Paddington, on 28 April 1978. It is held in the John Oxley Library, State Library of Queensland.",
+      "State Library of Queensland", "https://www.slq.qld.gov.au/blog/photograph-one-go-betweens-earliest-concerts"),
+  },
+  {
+    id: "i-pigcity", kind: "story", title: "Pig City", artist: "Andrew Stafford", year: 2004,
+    why: "A book about Brisbane music, cited by the State Library.",
+    linerNote: note(
+      "Andrew Stafford's 2004 book Pig City says The Go-Betweens' first concert was at Baroona Hall in early 1978.",
+      "State Library of Queensland", "https://www.slq.qld.gov.au/blog/photograph-one-go-betweens-earliest-concerts"),
+  },
+  {
+    id: "i-lafetts", kind: "track", title: "SEQEB Scabs", artist: "La Fetts", year: 1985,
+    why: "A Brisbane punk song about the 1985 power workers' dispute, from a band with a sacked striker in it.",
+    linerNote: note(
+      "La Fetts guitarist Peter de Hesse was an electrician sacked in 1985 with 1,002 striking ETU members in the SEQEB dispute. The master reel of the band's recording of the song is held in the John Oxley Library.",
+      "State Library of Queensland", "https://www.slq.qld.gov.au/blog/la-fetts-seqeb-scabs"),
+  },
+  {
+    id: "i-banana", kind: "album", title: "Behind the Banana Curtain", artist: "4ZZZ", year: 2000,
+    why: "A 4ZZZ compilation that put an archive recording back into circulation.",
+    linerNote: note(
+      "The 4ZZZ compilation was released in 2000. It included the digitised La Fetts recording of SEQEB Scabs from the State Library's master reel.",
+      "State Library of Queensland", "https://www.slq.qld.gov.au/blog/la-fetts-seqeb-scabs"),
+  },
+  {
+    id: "i-qmf", kind: "story", title: "Queensland Music Festival", artist: "Queensland", year: 1999,
+    why: "A festival that runs music events, touring shows and public installations.",
+    linerNote: note(
+      "The festival's own history page says it was created in 1999.",
+      "Queensland Music Festival", "https://www.qmf.org.au/about/history"),
+  },
+];
+
 export function seedEditions(today) {
   const mk = (offset, title, blurb, items) => ({
     id: `seed-${addDays(today, -offset)}`,
@@ -184,6 +260,8 @@ export function seedEditions(today) {
     mk(1, "Hottest 100s and ARIA nights", "Five songs and albums that took a Brisbane sound national.", CHARTS_ITEMS),
     mk(2, "Rooms that made the noise", "Five venues, from a power station to a ballroom that no longer exists.", ROOMS_ITEMS),
     mk(3, "Names on the map", "Five places and institutions where Brisbane music left a mark.", MAP_ITEMS),
+    mk(4, "Where Brisbane music gets its start", "Five stages, festivals and records, from a 1985 opening to a 2018 scholarship.", STARTS_ITEMS),
+    mk(5, "From the State Library shelves", "Five items from Queensland music history, from a 1978 photograph to a 2000 compilation.", SHELVES_ITEMS),
   ];
 }
 
