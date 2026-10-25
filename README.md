@@ -60,10 +60,6 @@ Check the [Wiki](https://github.com/s4899427/Team_11_Folio/wiki) for the Design 
 | Pranav | Content and audience research; from 9 Oct technical owner (deployment, README, tradeshow kit) |
 | Shaz | Earlier technical build; from 9 Oct audience research, poster, pitch and demo script; wrote the Audience Evaluation, Ethical Considerations and Future Improvements pages (`submission/11_Evaluation/`) |
 
-## Team Student Numbers
-Dylan Gregory Sali s4899427,
-Pranav Gupta ,
-Mohammad Shahzeb Shahzad (Shaz) s4751179
 
 ## AI use disclosure
 The prototype code was largely written with Claude (Anthropic) under the team's direction: architecture, UI, database rules and tests. The research, requirements, evaluation, ethics and reflections are the team's own. A full per-section AI-use appendix with prompts, as the course requires, belongs in the submission; see `docs/AI_USE.md` (to be completed by the team).
