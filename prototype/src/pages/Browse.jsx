@@ -7,6 +7,7 @@ import { useFolio } from "@/lib/folio-store";
 import CityPicker from "@/components/folio/CityPicker";
 import Nearby from "@/components/folio/Nearby";
 import ArtistCard from "@/components/folio/ArtistCard";
+import ArchiveCalendar from "@/components/folio/ArchiveCalendar";
 import { cn } from "@/lib/utils";
 
 /** Browse: the curators behind the Editions, the artists you can connect to, and the archive. */
@@ -20,6 +21,7 @@ export default function Browse() {
   const today = cityToday(city.tz);
   const all = (data?.editions || []).filter((e) => e.date < today);
   const past = who === "all" ? all : all.filter((e) => e.curatorId === who);
+  const upto = (data?.editions || []).filter((e) => e.date <= today && (who === "all" || e.curatorId === who));
   const oldest = all[all.length - 1], newest = all[0];
   const countOf = (id) => all.filter((e) => e.curatorId === id).length;
 
@@ -67,24 +69,7 @@ export default function Browse() {
         </p>
         <div className="mt-6 space-y-8">
           {all.length === 0 && <p className="text-sm text-folio-cream-dim leading-relaxed">{city.curated ? "Nothing archived yet. Today's Edition will land here at midnight." : `${city.name} has no Editions yet. The first curator's Editions will be kept here.`}</p>}
-          {groups.map((g) => (
-            <div key={g.k}>
-              <h3 className="folio-eyebrow text-folio-cream-dim">{g.k}</h3>
-              <ul className="mt-3 divide-y divide-border border-y border-border">
-                {g.items.map((e) => (
-                  <li key={e.id}>
-                    <Link to={`/edition/${e.date}`} data-testid="archive-row" className="flex items-baseline gap-4 py-4 group">
-                      <span className="font-mono text-xs text-folio-cream-dim w-14 shrink-0">{formatShort(e.date)}</span>
-                      <span className="min-w-0">
-                        <span className="block folio-serif text-xl text-folio-cream group-hover:text-folio-saffron transition-colors">{e.title}</span>
-                        <span className="block text-xs text-folio-cream-dim mt-0.5">{e.items.length} picks · {e.curatorName}</span>
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {upto.length > 0 && <ArchiveCalendar editions={upto} today={today} />}
         </div>
       </section>
     </div>
