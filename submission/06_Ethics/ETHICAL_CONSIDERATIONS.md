@@ -33,10 +33,10 @@ A fan who connects to an artist shares their name with that artist; there are no
 - No analytics or tracking beyond what the database needs to run the app.
 
 ## 7. Research ethics
-Participants were told the purpose and could stop at any time; notes use codes (P1, P2), not names. Consent forms are stored outside the public repo. **Action before submission:** earlier research documents in this repo used participants' first names; they are being replaced by codes. One Round 2 interview is a team member's self-interview and is labelled as such. Sample bias (friends and classmates) is stated in the process overview.
+Participants were told the purpose and could stop at any time; notes use codes (P1, P2), not names. Consent forms are stored outside the public repo. Earlier research documents used participants' first names. They were replaced by codes (for example R1-P1, Participant A) before submission, and the interview files and transcripts in the repository are de-identified. One Round 2 interview is a team member's self-interview and is labelled as such. Sample bias (friends and classmates) is stated in the process overview.
 
 ## 8. Content, copyright and cultural respect
-- Every Liner Note has a source link; Wikipedia-only facts are being cross-checked against primary sources before the tradeshow.
+- Every Liner Note has a source link; Wikipedia-only facts are being cross-checked against primary sources; section 11 says what is still unchecked.
 - The Acknowledgement of Country (Brisbane) is a draft **pending review by UQ's Aboriginal and Torres Strait Islander Studies Unit or a local Elder**; the Seoul and Mumbai greetings are drafts pending native-speaker review. Until reviewed, these are not shown for cities that are not live.
 - No third-party images in the app. Streaming and embeds are links out, because of licensing.
 - Music picks are scoped to Australian artists for now, which excludes the large non-Australian music newcomers also love. This is a design choice, not neutral.
@@ -47,7 +47,7 @@ Full record: `ETHICS_WORKSHOP_RECORD.md`. Participants are coded; recordings and
 - **Fan questions (row 8).** Changed to "partly": block and report on both sides are missing. A Disconnect button exists and deletes the connection; whether earlier questions stay visible to the artist is **not verified**.
 - **Scam events.** P1 raised fake events and ticket scams aimed at students, especially newcomers. Nearby is curator tips and the verification step is **not built**.
 - **Acknowledgement of Country.** P1 worried about tokenism and permission; P2, new to Brisbane, valued the Aboriginal cultural content. Decision: keep it, **review pending** with an appropriate person, and check the wording against UQ's official Acknowledgement. We do not claim it has been reviewed.
-- **Privacy.** Suburb to be hidden by default (planned). P2 expected taste to be exposed; Folio shows no listening history, but the app does not say so (planned, if the privacy register confirms it).
+- **Privacy.** The artist's suburb is now hidden on the public Browse page; hiding it by default for new accounts is planned. P2 expected taste to be exposed; Folio shows no listening history, but the app does not say so (planned, if the privacy register confirms it).
 - **Limits.** One outside participant, some leading questions, no First Nations voice, no artist, no curator.
 
 ## 9. Use of AI
