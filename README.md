@@ -61,7 +61,7 @@ Check the [Wiki](https://github.com/s4899427/Team_11_Folio/wiki) for the Design 
 | Shaz | Earlier technical build; from 9 Oct audience research, poster, pitch and demo script; wrote the Audience Evaluation, Ethical Considerations and Future Improvements pages (`submission/11_Evaluation/`) |
 
 ## Team Student Numbers
-Dylan Shabi s4899427,
+Dylan Gregory Sali s4899427,
 Pranav Gupta ,
 Mohammad Shahzeb Shahzad (Shaz) s4751179
 
