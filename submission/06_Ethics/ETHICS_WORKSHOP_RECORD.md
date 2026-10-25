@@ -10,7 +10,7 @@ Status: **in progress.** P1 workshop done; Pranav answered in writing; Shaz and 
 | Pranav | Team member | Written answers to the six-question form, sent overnight |
 | Shaz | Team member | [invited; no response yet] |
 
-Date: Tue 20 Oct 2026 (early hours). Photo of notes: [attach].
+Date: Mon 19 Oct 2026, evening (the same night as the two evaluation sessions). Photo of notes: [attach].
 This was **not** the full six-step 60-minute workshop. It was a shortened version with one outside participant plus written answers. Say so on the wiki page.
 
 ## Stakeholders added
@@ -63,7 +63,7 @@ P2 (not in the workshop) said the Aboriginal cultural content was valuable: "I d
 | Ask participants whether they noticed their name is visible to the artist | Pranav | Not asked in E-01 or E-02; add to the next session |
 | Tell users plainly that listening and search are not shown to anyone, if true | P2 (evaluation) | Planned |
 
-**One change that matters most:** comment report and curator hide, plus event-source verification. The app was frozen for the tradeshow, so these are recorded as planned. We do not claim they exist.
+**One change that matters most:** comment report and curator hide, plus event-source verification. These were not built, so they are recorded as planned. We do not claim they exist.
 
 ## Limits
 Small and informal: one outside participant, partly yes/no questions, leading wording by the facilitator, no First Nations voice, no artist, no curator. The Acknowledgement of Country has not been reviewed by an appropriate person; that is still open.

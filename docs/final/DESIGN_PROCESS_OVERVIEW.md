@@ -1,47 +1,54 @@
 # Design process overview: Folio
 
-*DECO3500 Social & Mobile Computing, Team 11. Wiki page. Evaluation evidence below comes from two sessions run on 20 Oct 2026; nothing is invented, and its limits are stated.*
+*DECO3500 Social & Mobile Computing, Team 11.*
 
-**Poster and promotional material:** `docs/FOLIO_POSTER.pdf` in the repository (A3 pair, printed for the tradeshow)  
-**Prototype:** https://s4899427.github.io/Team_11_Folio/ (reading needs no account; to comment, open Me > Create account > "Join as a guest")  
+**Poster and promotional material:** [Folio poster (PDF)](https://github.com/s4899427/Team_11_Folio/blob/main/docs/FOLIO_POSTER.pdf)
+**Prototype:** https://s4899427.github.io/Team_11_Folio/ . Reading needs no account. To comment, open Me, Create account, then "Join as a guest" (no email). `#/demo` opens a sandbox where every role can be tried on one device.
 **Repository:** https://github.com/s4899427/Team_11_Folio
 
 ## Summary
-Newcomers to a city, and people tired of algorithmic feeds, struggle to find a local music scene they can trust and talk about. Folio offers one human-picked music Edition per city per day, locked at the city's midnight, with no likes and no ranking. Every pick has a reason and a Liner Note with a checkable source. Readers, artists and curators connect through shared comments, a Discovery check and an artist–fan link, with the rules built into the database.
+Newcomers to a city, and people tired of algorithmic feeds, struggle to find a local music scene they can trust and talk about. Folio offers one human-picked music Edition per city per day, locked at the city's midnight, with no likes and no ranking. Every pick has a reason and a Liner Note with a checkable source. Listeners, artists and curators connect through comments, a Discovery check and an artist-fan link, with the rules enforced in the database.
 
 ## Process
 
-**1. Starting wide (MOTIF).** We began with a wiki of world culture (music, fashion, art, food). Six Round 1 interviews converged, unprompted, on one complaint: algorithmic discovery has flattened taste and people want something more human. Peer feedback (Team 8) asked who decides accuracy when sources disagree.
+**1. Starting wide (MOTIF).** We began with a wiki of world culture. Six Round 1 interviews converged, unprompted, on one complaint: algorithmic discovery has flattened taste and people want something more human. Peer feedback asked who decides accuracy when sources disagree.
 
-**2. Narrowing and pivots.** Our pivot log records eight changes, such as dropping full streaming for licensing reasons, replacing a single "accuracy" model with several attributed perspectives, and moving from a browsable library to one daily curated Thread. Course feedback said the daily curated experience was our strongest idea. We also renamed the app (MOTIF to Folio) after finding clashes with existing products.
+**2. Narrowing.** Our pivot log records eight changes, such as dropping streaming for licensing reasons and moving from a browsable library to one daily curated Thread. Course feedback called the daily curated experience our strongest idea. We renamed the app (MOTIF to Folio) after finding clashes with existing products.
 
-**3. Round 2 research.** Five more interviews (two interviewers) found that all five drew the same line between inspiration and killing time, and that interest in a curator-led daily offer depended on the curator being credible. One participant was a team member's self-interview; we treat it as weak evidence. Participants also described coordinating before big occasions, but treated it as a prompt, not a rule; that idea was later dropped with the multi-domain scope.
+**3. Round 2 research.** Five more interviews found that all five drew the same line between inspiration and killing time, and that interest in a curator-led offer depended on the curator's credibility. One participant was a team member's self-interview, so we treat it as weak evidence.
 
-**4. Music-first pivot (after Week 9).** We repositioned to one domain, music, for one city, Brisbane. Our tutor's Week 9 stand-up feedback was to scope down to a single domain rather than stay cross-domain, and to keep the curator mechanic a supporting feature. Two of us independently proposed music. We chose Brisbane because it is where we and our interviewees are, and because the clearest use case we found is an international student new to Australia who wants to learn what local people actually listen to. The Thread became an Edition of 8 to 12 picks; each gained a Liner Note; roles became guest, listener, artist and curator. The design objective became: invite people in a place to discover music through a named human, and to back curators who show them something new.
+**4. Music-first pivot (after Week 9).** Our tutor's stand-up feedback was to scope down to one domain. Two of us independently proposed music. We chose Brisbane because we and our interviewees are here, and because the clearest use case is an international student new to Australia who wants to learn what locals listen to. The Thread became an Edition of 8 to 12 picks, each with a Liner Note, and roles became guest, listener, artist and curator.
 
-**5. Building and simulating.** The prototype (React and Vite) runs on a shared Supabase database so several phones see the same Edition. Rules sit in the database as well as the interface: one Edition per city per day, no publishing without a source, curators approved by the team, comments only on the current Edition. We tested the rules with a live smoke test (33 of 33 checks on 12 Oct; the script now has 34 checks) and 25 unit tests (all passing on 20 Oct). The database rule script has not been re-run since the roles round. We balanced real function (shared data, roles, midnight lock) with simulation (seed Editions, Brisbane only, curator-raised gigs, Seoul and Mumbai marked "Coming soon"). A Base44 build was an early side experiment; a security scan found 14 issues, so we did not use it with real participants.
+![Today screen, 14 Oct build](https://github.com/s4899427/Team_11_Folio/raw/main/submission/09_Evidence/screenshots/F1-4-today.png)
+*Today, 14 Oct build: the curator, the picks and the discussion for one city and one day.*
 
-**6. Evaluation (formative, in context, several people at once).** Following the unit, we adapted methods to social and mobile use rather than using SUS or TAM: sessions with groups using the same Edition at the same time, observation and interview, critical questions (including when would you not use it), and heuristics adapted from locales-based groupware (Greenberg et al.). The kit lists eleven questions covering curator trust, Nearby use, shared facts, the Discovery check, awareness of others, the place-based layer, the mix of new artists, artist connection, avoiding unwanted interaction and physical context. **What we did and found.** On 20 Oct 2026 we ran two sessions, one participant each (so **simultaneous use was not tested**), with recording consent. Findings (full table in `05_Research_Evaluation/EVALUATION_RESULTS.md`): neither participant could comment, because both were anonymous readers and the only prompt was a link near the bottom of a ~4,000 px page; P1 read Browse as an events guide and chose a venue, not a track; P2, new to Brisbane, did not notice the new-artist mix but valued the facts and Aboriginal cultural content; the two disagreed on habit (P1 weekends, P2 daily).
+**5. Building and simulating.** The prototype (React, Vite) runs on a shared Supabase database so several phones see one Edition. Rules sit in the database as well as the interface: one Edition per city per day, no publishing without a source, curators approved by the team, comments only on the current Edition. The rules are covered by 25 unit tests, a live smoke test and 65 database rule tests on a local Postgres. We balanced real function (shared data, roles, midnight lock) with simulation (seed Editions, Brisbane only, curator-entered gigs, other cities marked "Coming soon"). A Base44 build was an early side experiment; its security scan found 14 issues, so we never used it with participants.
 
-**7. What changed.** Design changes driven by the process so far: no likes (Round 1 and 2), sourced Liner Notes (peer feedback on accuracy), Nearby moved into Browse and a city picker with opt-in location (context), curator "applied for, not chosen" (curation as gatekeeping), a wider Edition of 8 to 12 picks (after reviewing the first build we judged 5 to 7 picks too thin; this is a team judgement, not yet a finding), and a revised new-artist mix. **After the sessions.** The app was frozen for the tradeshow, so these are planned, not built: a Discussion shortcut and guest link, larger tap targets (measured 16 px high), and linking Browse venues back to the picks.
+![Studio validation](https://github.com/s4899427/Team_11_Folio/raw/main/submission/09_Evidence/screenshots/F4-3-studio-errors.png)
+*Studio refuses an Edition with missing sources or too few picks.*
+
+**6. Evaluation (formative).** We adapted methods to social and mobile use rather than SUS or TAM: observation and interview, critical questions (including "when would you not use it"), and heuristics adapted from locales-based groupware. On the evening of 19 Oct we ran two sessions, one participant each, so **simultaneous multi-user use was not tested**. Neither participant could comment: both were anonymous readers and the only prompt was a link near the bottom of a very long page. P1 read Browse as an events guide; P2, new to Brisbane, valued the local facts. Full table: `05_Research_Evaluation/EVALUATION_RESULTS.md`.
+
+**7. What changed.** Design changes so far: no likes (Rounds 1 and 2); sourced Liner Notes (peer feedback); Nearby inside Browse with opt-in location; curators "applied for, not chosen"; Editions widened to 8 to 12 picks (a team judgement, not a finding). After the sessions we fixed the commenting finding: a Discussion shortcut, a "Join as a guest" prompt and 44 px tap targets (commit 9a06de9). Linking Browse venues back to picks is not built.
+
+**8. After evaluation.** We then added three features, none tested with participants: near-live comments (the open Edition re-checks every 5 seconds), a share button, and an anonymous "reading now" count (no identity stored). All use polling, not websockets. The count can be inflated by repeated calls; it carries no ranking or reward.
 
 ## Theory and ethics
-We use the unit's frameworks for location and locales, and Winner (1980) and Akrich (1992) to argue that our rules are political choices built into the software. Full analysis: Ethical Considerations page. Main open risk: with few curators the scene will be uneven.
+We use the unit's location and locales frameworks, and Winner (1980) and Akrich (1992) to argue that our rules are political choices built into the software. Full analysis: the Ethical Considerations page.
 
-## Limitations and what we could not verify
-Said plainly, so a reader can judge the work:
-- **AI-made music.** Folio cannot detect AI-generated music. The safeguard is human: a named curator signs "human-made, local and new" for every new-artist pick and cites two independent sources. A curator can still sign falsely. What limits the harm is visibility (every reader sees the sources), the team's power to remove a curator, and the Discovery check. We have not tested this against deliberate abuse.
-- **Local and new are claims, not measurements.** "Local" rests on a profile location, a gig or a venue the curator names. We use no stream counts and no streaming-service integration, because we have not verified API access or terms.
-- **Facts.** Eleven seed picks and two city facts rest on Wikipedia alone and are being cross-checked (`05_Research_Evaluation/DATA_VERIFICATION_REGISTER.md`). We claim no Brisbane-specific fact about Aboriginal music because we could not verify one; the national fact on screen is labelled as national. The Acknowledgement of Country wording is a draft that has not yet been reviewed by an appropriate person, and the app uses no Aboriginal artwork.
-- **Evaluation.** When this page was first drafted (15 Oct 2026) no evaluation session had been run. Findings come from small, convenience-based, short sessions in one city, and are formative, not proof. Two sessions on 20 Oct 2026, one participant each, both known to the team, tested one at a time in a short single exposure; the facilitator explained steps and asked leading questions in places, so trust answers carry little weight. Findings are formative, not proof.
-- **Prototype, not product.** No email recovery, moderation tooling, content licensing or scale testing. Nearby events are curator-entered tips. A gig verification queue and a source-link check were planned and are not built.
-- Also: one city; profile pictures are stored in the database; unreviewed greetings are not shown for cities that are not live.
+## Limitations
+- **AI-made music** cannot be detected by Folio. The safeguard is a named curator who signs each new-artist pick and cites two independent sources. A curator could sign falsely; visibility, team removal and the Discovery check limit the harm. We have not tested deliberate abuse.
+- **"Local" and "new"** are claims, not measurements. We use no stream counts or streaming integration.
+- **Facts:** some seed picks rest on Wikipedia alone and are being cross-checked. The Acknowledgement of Country wording has not yet been reviewed by an appropriate person.
+- **Evaluation** was two short sessions, in one city, with people known to the team, and the facilitator asked some leading questions. Findings are formative, not proof.
+- **Presentation:** at the 22 Oct tradeshow our screen-only prototype stood beside physical projects such as Pulseband, which won People's Choice. The team felt a reading-led app is less eye-catching at a stall; we did not test this.
+- **Prototype, not product:** no email recovery, moderation tooling, content licensing or scale testing. Comment moderation is designed but not built.
 
 ## Who did what
 | Person | Contribution |
 |---|---|
-| Dylan | Team lead. Research synthesis and documentation. Product decisions (Edition size, new-artist mix, roles and flows). Set up and tested the shared Supabase database. Interviewed three participants. |
-| Pranav | Content and audience research (one interview transcript). From 9 Oct, technical owner: deployment, GitHub Actions secrets, architecture and README, tradeshow kit. |
-| Shaz | Earlier: technical build. Interviewed three participants. From 9 Oct: audience research, poster, design, pitch and demo script. |
+| Dylan | Team lead. Research synthesis, documentation, product decisions, shared database, three interviews. |
+| Pranav | Content and audience research; from 9 Oct technical owner (deployment, README, tradeshow kit). |
+| Shaz | Earlier technical build and three interviews; from 9 Oct audience research, poster, pitch and demo script. |
 
-*AI use: see `docs/AI_USE.md`.*
+*AI use, with prompts: `docs/AI_USE.md`.*

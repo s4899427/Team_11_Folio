@@ -34,9 +34,9 @@ Open `https://s4899427.github.io/Team_11_Folio/#/demo`, tap "Start the sandbox",
 | Edition looks wrong | Sign out, reload; never edit live data during the show |
 
 ## What a marker is likely to ask, and the true answer
-- **Was it tested with several users at once?** No. Two sessions, one person each, on 20 Oct. We planned simultaneous use; it did not happen. That is why the two-phone demonstration matters.
-- **What did testing change?** Nothing in the deployed app yet (frozen for the tradeshow). Planned: a Discussion shortcut and guest link, bigger tap targets, Browse links back to picks.
-- **Ethics?** Shortened workshop on 20 Oct (Dylan, one outside participant, Pranav's written answers; Shaz invited). Comments have no moderation and we say so.
+- **Was it tested with several users at once?** No. Two sessions, one person each, on the evening of 19 Oct. We planned simultaneous use; it did not happen. That is why the two-phone demonstration matters.
+- **What did testing change?** A Discussion shortcut, bigger tap targets and a clearer guest prompt were built after the sessions (commit 9a06de9). Planned, not built: Browse links back to picks.
+- **Ethics?** Shortened workshop on 19 Oct (Dylan, one outside participant, Pranav's written answers; Shaz invited). Comments have no moderation and we say so.
 - **AI?** Claude for code and documents, TurboScribe for transcription, Google AI Mode for artist brainstorming; all disclosed in `06_Ethics/AI_USE.md`.
 
 ## Capture at the stand

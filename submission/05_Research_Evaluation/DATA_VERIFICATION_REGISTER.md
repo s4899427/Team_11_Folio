@@ -9,7 +9,7 @@ Written 15 Oct 2026. Rule: **a claim is "verified" only when someone opened a pr
 4. **Never fix a fact from memory** and never ask an AI to confirm it without opening the source yourself.
 
 ## A. Seed Edition picks marked "Wikipedia only" (11 in code, `seed.js`)
-Status for all: **Unverified against primary sources.** Owner: **[DYLAN TO WRITE: name]**. Check each against the sources suggested.
+Status for all: **Unverified against primary sources.** Owner: Dylan Sali. Check each against the sources suggested.
 
 | Pick | Claim to check | Where to check |
 |---|---|---|
