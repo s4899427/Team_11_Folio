@@ -52,8 +52,8 @@ Status key: **Built and tested** (flow test passed), **Built, live check pending
 Cities beyond Brisbane; automatic or verified gig sources; server-side source-link and advisory AI check; picture storage outside the database; email recovery; accessibility audit; moderation tools beyond manual removal by the team.
 
 ## Gaps we see (our own review), in order of mark impact
-1. No user-evaluation evidence yet. Fix: run three sessions before the tradeshow.
-2. Two-phone simultaneous check not recorded.
+1. User-evaluation evidence is small: two short sessions on 19 Oct, one participant each (`05_Research_Evaluation/EVALUATION_RESULTS.md`).
+2. Two-phone check: one run on 25 Oct (`09_Evidence/TEST_EVIDENCE_24_OCT.md`); share button and presence count not checked on phones.
 3. Team and approval path untested on the live database.
 4. The poster does not exist.
 5. Ethics framework not yet applied.

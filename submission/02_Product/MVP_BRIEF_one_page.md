@@ -48,7 +48,7 @@ One human-picked music Edition per city per day, locked at the city's midnight: 
 - Evaluation is one short round with few groups; it cannot show long-term use.
 - Profile pictures are stored in the database as small images, which is not a production design.
 - The Base44 side prototype had open security issues and is not used for evaluation with real users.
-- Only Brisbane is live. Facts sourced only from Wikipedia are cross-checked before the tradeshow.
+- Only Brisbane is live. Facts sourced only from Wikipedia are being cross-checked against primary sources (`05_Research_Evaluation/DATA_VERIFICATION_REGISTER.md`).
 
 ## 7. Where it is built
 Prototype: `prototype/` (live link in the README). Database rules: `prototype/supabase/schema.sql`, tested by `rls_test.sh` and `smoke_test.mjs` (33 of 33 checks passed on the live project, 12 Oct 2026).
