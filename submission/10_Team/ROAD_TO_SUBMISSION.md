@@ -1,6 +1,6 @@
 # Road to final submission (Team 11)
 
-Written 15 Oct 2026. **Submission is due 3:00 pm Mon 26 Oct (target 12:00; late penalty is one grade per day).** The tradeshow is in Week 12, on Tue 20 or Thu 22 Oct (day to be confirmed with the tutor; do not assume). Shaz is unavailable Mondays and Fridays. Owners: D = Dylan, P = Pranav, S = Shaz.
+Written 15 Oct 2026. **Submission is due 3:00 pm Mon 26 Oct (target 12:00; late penalty is one grade per day).** The tradeshow is in Week 12, on Tue 20 or Thu 22 Oct (day to be confirmed with the tutor; do not assume). Owners: D = Dylan, P = Pranav, S = Shaz.
 
 | Date | Milestone | D | P | S |
 |---|---|---|---|---|
@@ -26,5 +26,5 @@ Written 15 Oct 2026. **Submission is due 3:00 pm Mon 26 Oct (target 12:00; late 
 1. No evaluation evidence yet (needs real people by Mon 19 Oct).
 2. Live database not yet confirmed after the role and edition-size migrations.
 3. Tradeshow day not confirmed.
-4. Poster not started until Shaz returns from his unavailable days.
+4. Poster: Shaz.
 5. Acknowledgement of Country wording still a draft.

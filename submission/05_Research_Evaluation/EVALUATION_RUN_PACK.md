@@ -8,7 +8,7 @@ Use with `EVALUATION_KIT.md` (questions Q1 to Q11, tasks, observation sheet) and
 | S1 | 2 to 3 people at once (friends or classmates, ideally one international student) | A room with 2 to 3 phones | by Fri 16 Oct | Shaz leads, Dylan notes |
 | S2 | 2 to 3 different people at once | In context: a cafe, a train ride or a venue | by Sun 18 Oct | Dylan leads, Shaz notes |
 | S3 | At least one person outside the course who has never seen it, using it unassisted | Anywhere | by Mon 19 Oct | Pranav |
-Note Shaz is unavailable Mondays and Fridays; move S1 to Thursday or earlier.
+
 
 ## Before each session (10 minutes)
 - Live site opens over mobile data (QR code or link). Create no accounts for testers: use *Join as a guest*.

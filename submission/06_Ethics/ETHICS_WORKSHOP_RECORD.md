@@ -1,9 +1,16 @@
 # Ethics workshop record (Ethical Disclaimer method)
 
-Status: **in progress.** P1 workshop done; Pranav answered in writing; Shaz and P2 pending. Part B (18-row draft) was written by Claude and challenged by the people below.
+Status: **in progress.** P1 workshop done; Pranav answered in writing; P2 pending; Shaz wrote his own page, see 11_Evaluation. Part B (18-row draft) was written by Claude and challenged by the people below.
 
 Date: Mon 19 Oct 2026, evening (the same night as the two evaluation sessions). Photo of notes: [attach].
 This was **not** the full six-step 60-minute workshop. It was a shortened version with one outside participant plus written answers. Say so on the wiki page.
+
+## Who took part
+| Who | Role | How |
+|---|---|---|
+| Dylan | Team lead; facilitator and participant | In the room |
+| P1 | External participant (Master of Business student, Griffith) | In the room, about 15 minutes, voice-recorded and machine-transcribed |
+| Pranav | Team member | Written answers to the six-question form, sent overnight |
 
 ## Stakeholders added
 - **P1:** students, and **international students and recent immigrants more than locals**, because locals already know the area; parents of students. Party-goers get "none" in benefits.
