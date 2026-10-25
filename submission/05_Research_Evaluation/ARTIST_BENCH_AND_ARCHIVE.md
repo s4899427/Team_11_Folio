@@ -11,8 +11,8 @@ Why this file exists: Folio's Edition is picked by humans, and the app does **no
 ## Used (published Editions)
 | Date | City | Artist | Track or release | Role (new / established) | Published by |
 |---|---|---|---|---|---|
-| Tue 20 Oct 2026 | Brisbane | Headwreck | Raindrops | new | (fill) |
-| Tue 20 Oct 2026 | Brisbane | Serendipiti | idealist (EP) | new | (fill) |
+| Tue 20 Oct 2026 | Brisbane | Headwreck | Raindrops | new | Dylan Sali |
+| Tue 20 Oct 2026 | Brisbane | Serendipiti | idealist (EP) | new | Dylan Sali |
 
 ## Bench: checked, usable for later Editions (still needs the curator checks above)
 | Artist | Brisbane? | Evidence found | Concern |
