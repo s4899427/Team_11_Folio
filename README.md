@@ -27,7 +27,10 @@ cd prototype
 npm install
 npm run dev      # http://localhost:5173
 npm test         # unit tests (time zones, cities, voting rules, validation, seed integrity)
-bash supabase/rls_test.sh   # 65 database-rule checks on a throwaway Postgres (needs postgres installed)
+bash supabase/rls_test.sh   # 65 database-rule checks; needs a RUNNING local Postgres with supabase/rls_stub.sql then schema.sql then migrations 002-004 loaded,
+                            # and PGHOST/PGPORT/PGUSER set (steps: submission/07_Engineering/SUPABASE_SETUP.md)
+bash supabase/presence_test.sh   # checks the 'reading now' function (migration 004), same throwaway Postgres
+node supabase/smoke_test.mjs     # live check of a real Supabase project (needs VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY, CURATOR_EMAIL, CURATOR_PASSWORD)
 ```
 
 Use **Join as a guest** to try it without an email. Runs in **demo mode** by default (data stays on the device). To share data across devices, follow [`docs/SUPABASE_SETUP.md`](./docs/SUPABASE_SETUP.md).

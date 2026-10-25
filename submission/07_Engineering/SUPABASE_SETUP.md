@@ -40,7 +40,7 @@ It signs up throwaway guests and checks, against the live project: sign-up works
 - The smoke test leaves a published Edition for today, a comment and `smoke-*` guest users. Delete them before publishing a real Edition. Delete child rows first or you will hit foreign-key errors: backs, discovery, comments, pitches, dispatches, connections, questions, then editions, then the `smoke-*` users in Authentication.
 
 ## Round 2: admin, curator approval and delete account (13 Oct)
-Run once each in Supabase > SQL Editor, in order (both safe to run again): `prototype/supabase/migrations/002_roles_admin.sql`, then `003_editions_up_to_12.sql` (lets Editions hold up to 12 picks). A project created from `schema.sql` after 13 Oct already has both; the live Folio project was created earlier, so both were needed.
+Run once each in Supabase > SQL Editor, in order (both safe to run again): `prototype/supabase/migrations/002_roles_admin.sql`, then `003_editions_up_to_12.sql` (lets Editions hold up to 12 picks). A project created from `schema.sql` after 13 Oct already has both; the live Folio project was created earlier, so both were needed. Then run `prototype/supabase/migrations/004_presence.sql` (the "reading now" count; needed on any project set up before 24 Oct 2026) and check it with `bash prototype/supabase/presence_test.sh` on a throwaway Postgres.
 Then make yourself a Folio team member (use your own uuid from Authentication > Users):
 ```sql
 update public.profiles set is_admin = true where id = '<your uuid>';
