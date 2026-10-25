@@ -2,14 +2,6 @@
 
 Status: **in progress.** P1 workshop done; Pranav answered in writing; Shaz and P2 pending. Part B (18-row draft) was written by Claude and challenged by the people below.
 
-## Who took part
-| Who | Role | How |
-|---|---|---|
-| Dylan | Team lead; facilitator and participant | In the room |
-| P1 | External participant (Master of Business student, Griffith) | In the room, about 15 minutes, voice-recorded and machine-transcribed |
-| Pranav | Team member | Written answers to the six-question form, sent overnight |
-| Shaz | Team member | [invited; no response yet] |
-
 Date: Mon 19 Oct 2026, evening (the same night as the two evaluation sessions). Photo of notes: [attach].
 This was **not** the full six-step 60-minute workshop. It was a shortened version with one outside participant plus written answers. Say so on the wiki page.
 
